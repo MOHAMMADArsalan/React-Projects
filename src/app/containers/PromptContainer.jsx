@@ -1,6 +1,6 @@
 import React from "react";
 import style from "../styles/index.jsx";
-import Prompt from "../components/prompt.jsx";
+import Prompt from "../components/Prompt.jsx";
 class PromptContainer extends React.Component {
     constructor() {
         super();
