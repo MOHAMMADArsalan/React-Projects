@@ -5,12 +5,12 @@ let sec = "YOUR_SECRET_ID";
 let param = "?client_id=" + id + "&client_secret=" + sec;
 
 let getUserInfo = (username) => {
-    return axios.get("http://api.github.com/users/" + username + param)
+    return axios.get("https://api.github.com/users/" + username + param)
 }
 
 let getRepos = (username) => {
     // fetch username repos
-    return axios.get("http://api.github.com/users/" + username + "/repos" + param + "&per_page=100")
+    return axios.get("https://api.github.com/users/" + username + "/repos" + param + "&per_page=100")
 }
 
 let getTotalStars = (repos) => {

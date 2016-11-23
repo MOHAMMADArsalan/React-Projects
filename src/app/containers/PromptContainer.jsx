@@ -18,7 +18,6 @@ class PromptContainer extends React.Component {
     }
     handlerSubmitUser(e) {
         e.preventDefault();
-        console.log(this.state)
         let userName = this.state.username;
         this.setState({
             username: ""
