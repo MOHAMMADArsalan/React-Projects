@@ -1,24 +1,23 @@
 import React from "react";
+import "./../main.css";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+
 let PropTypes = React.PropTypes;
+
 class Main extends React.Component {
     render() {
         return (
-            <div>
-                {this.props.children}
+            <div className="main-container">
+                <ReactCSSTransitionGroup
+                    transitionName="appear"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={500}
+                    >
+                    {React.cloneElement(this.props.children, { key: this.props.location.pathname })}
+                </ReactCSSTransitionGroup>
             </div>
         )
     }
 }
-// class Greet extends React.Component {
-//     static get propTypes() {
-//         return {
-//             name: PropTypes.string.isRequired
-//         }
-//     }
-//     render() {
-//         return (
-//             <h1>Hello from Main Component</h1>
-//         )
-//     }
-// }
+
 export default Main;

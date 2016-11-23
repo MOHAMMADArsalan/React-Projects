@@ -8,6 +8,7 @@ class ConfirmBattleContainer extends React.Component {
             loading: true,
             playerInfo: []
         }
+        this.handlerInitiateBattle = this.handlerInitiateBattle.bind(this);
     }
     componentDidMount() {
         let query = this.props.location.query;
@@ -15,15 +16,24 @@ class ConfirmBattleContainer extends React.Component {
             .then((players) => {
                 this.setState({
                     loading: false,
-                    playerInfo:[...players]
+                    playerInfo: [...players]
                 })
             });
         //Fetch Info from github then update state
+    }
+    handlerInitiateBattle() {
+        this.context.router.push({
+            pathname:"/results",
+            state: {
+                playerInfo: this.state.playerInfo
+            }
+        })
     }
     render() {
         return (
             <ConfirmBattle
                 isLoading={this.state.loading}
+                onInitiateBattle={this.handlerInitiateBattle}
                 playerInfo={this.state.playerInfo}
                 />
         );
