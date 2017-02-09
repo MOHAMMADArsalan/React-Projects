@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./../styles/index.jsx"
 class Headers extends React.Component {
     render() {
         return (
@@ -8,7 +9,7 @@ class Headers extends React.Component {
                         if (this.props.sortby === i) {
                             val += this.props.descending ? ' \u2191' : ' \u2193'
                         }
-                        return <th key={i}>{val}</th>
+                        return <th key={i} style={styles.textCenter}>{val}</th>
                     })}
                 </tr>
             </thead>

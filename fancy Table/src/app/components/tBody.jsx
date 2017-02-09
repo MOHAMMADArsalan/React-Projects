@@ -3,13 +3,14 @@ class TableBody extends React.Component {
     render() {
         return (
             <tbody onDoubleClick={this.props._showEditor}>
+                {this.props._renderSearch()}
                 {this.props.data.map((row, rowIndex) => {
                     return <tr key={rowIndex}>
                         {row.map((cell, cellIndex) => {
                             let content = cell;
                             if (this.props._edit && this.props._edit.row === rowIndex && this.props._edit.cell === cellIndex) {
-                                content = (<form onSubmit={this.props._save}>
-                                    <input defaultValue={cell} type="text" />
+                                content = (<form onSubmit={this.props._save} className="form-group">
+                                        <input type="text" className="form-control" defaultValue={cell} />
                                 </form>)
                             }
                             return <td key={cellIndex} data-row={rowIndex}>{content}</td>
