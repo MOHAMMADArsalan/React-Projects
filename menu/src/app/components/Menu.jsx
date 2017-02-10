@@ -2,9 +2,9 @@ import React from "react";
 import Link from "./Link.jsx"
 class Menu extends React.Component {
     componentWillMount() {
-        fetch('./../menus.json')
-            .then((response) => response.json())
-            .then((users) => {console.log("usersssssssss",users)})
+        // fetch('./../menus.json')
+        //     .then((response) => { console.log("resssssssssssssssss", response); response.json() })
+        //     .then((users) => { console.log("usersssssssss", users) })
     }
     menus = ['Home',
         'About',
