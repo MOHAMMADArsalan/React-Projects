@@ -13,12 +13,12 @@ class TimeWrapper extends React.Component {
     }
     startTimer(timeLeft) {
         clearInterval(this.state.timer);
-        let time = setInterval(() => {
+        let timer = setInterval(() => {
             var timeLeft = this.state.timeLeft - 1;
             if (timeLeft == 0) clearInterval(timer);
             this.setState({ timeLeft: timeLeft })
         }, 1000)
-        console.log("startTimer", startTimer)
+        // console.log("startTimer", startTimer)
         return this.setState({ timeLeft: timeLeft, timer: timer })
     }
     render() {
@@ -27,9 +27,11 @@ class TimeWrapper extends React.Component {
             <div className="row-fluid">
                 <h2>Timer</h2>
                 <div className="btn-group" role="group" >
-                    <Button time="5" _startTimer={this.startTimer} />
-                    <Button time="10" _startTimer={this.startTimer} />
-                    <Button time="15" _startTimer={this.startTimer} />
+                    <Button _startTimer={this.startTimer}>5</Button>
+                    <Button _startTimer={this.startTimer}>10</Button>
+                    <Button _startTimer={this.startTimer}>15</Button>
+                    {/*<Button time="10" _startTimer={this.startTimer} />*/}
+                    {/*<Button time="15" _startTimer={this.startTimer} />*/}
                 </div>
                 <Time timeLeft={this.state.timeLeft} />
                 <audio id="end-of-time" src="flute_c_long_01.wav" preload="auto"></audio>
