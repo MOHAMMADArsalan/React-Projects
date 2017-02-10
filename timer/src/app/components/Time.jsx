@@ -2,9 +2,11 @@ import * as React from "react";
 
 class Time extends React.Component {
     render() {
-        return (
-            <h2>Time</h2>
-        )
+        if (this.props.timeLeft == 0 || this.props.timeLeft == null) {
+            document.getElementById("end-of-time").play();
+            return <div></div>
+        }
+        return <h1>Time left: {this.props.timeLeft}</h1>
     }
 }
 

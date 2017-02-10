@@ -17,16 +17,22 @@ class TimeWrapper extends React.Component {
             var timeLeft = this.state.timeLeft - 1;
             if (timeLeft == 0) clearInterval(timer);
             this.setState({ timeLeft: timeLeft })
-        })
+        }, 1000)
         console.log("startTimer", startTimer)
+        return this.setState({ timeLeft: timeLeft, timer: timer })
     }
     render() {
 
         return (
-            <div >
-                <h1>Hello World</h1>
-                <Button _startTimer={this.startTimer}>Click</Button>
-                <Time></Time>
+            <div className="row-fluid">
+                <h2>Timer</h2>
+                <div className="btn-group" role="group" >
+                    <Button time="5" _startTimer={this.startTimer} />
+                    <Button time="10" _startTimer={this.startTimer} />
+                    <Button time="15" _startTimer={this.startTimer} />
+                </div>
+                <Time timeLeft={this.state.timeLeft} />
+                <audio id="end-of-time" src="flute_c_long_01.wav" preload="auto"></audio>
             </div>
         )
     }
