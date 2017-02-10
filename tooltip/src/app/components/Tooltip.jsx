@@ -10,7 +10,6 @@ class Tooltip extends React.Component {
     }
     toggle() {
         const tooltipNode = ReactDOM.findDOMNode(this);
-        console.log("toggle", tooltipNode)
         this.setState({
             opacity: !this.state.opacity,
             top: tooltipNode.offsetTop,
