@@ -1,5 +1,21 @@
 import * as React from "react";
-import Dashboard from "./../components/Dashboard.jsx"
+import Dashboard from "./../components/Dashboard.jsx";
+import { connect } from "react-redux";
+import { CompanyAction, StudentAction } from "./../store/actions/index.js"
+function mapStateToProps(state) {
+    return {
+        companies: state.companyReducer['companies'],
+        posts: state.companyReducer['posts'],
+        studentsList:state.studentReducer['students']
+    }
+}
+function mapDispatchToProps(dispatch) {
+    return {
+        getCompanies: () => { dispatch(CompanyAction.getCompany()) },
+        getStudentsList: () => { dispatch(StudentAction.getStudentsList()) },
+        getPosts: () => { dispatch(CompanyAction.getPosts()) }
+}
+}
 class Home extends React.Component {
     constructor() {
         super();
@@ -40,17 +56,33 @@ class Home extends React.Component {
         console.log("propsssssssss", this.props)
         // t.location
     }
+    componentDidMount() {
+        if (this.state.userType) {
+            setTimeout(() => { console.log(this.props.posts) }, 5000)
+            if (this.state.userType === 1) {
+                this.props.getCompanies();
+                this.props.getStudentsList();
+                this.props.getPosts()
+            }
+        }
+    }
     Post(e) {
         e.preventDefault();
-        console.log("this.state",this.state.post)
+        console.log("this.state", this.state.post)
     }
     render() {
         return (
             <div>
-                <h1>Dashboard</h1>
-                <Dashboard _InputHandler={this.InputHandler} userType={this.state.userType} tab={this.state.tab} showData={this.showData}></Dashboard>
+                <Dashboard
+                    _InputHandler={this.InputHandler}
+                    userType={this.state.userType}
+                    tab={this.state.tab}
+                    showData={this.showData}
+                    _companies={this.props.companies}
+                    _studentList={this.props.studentsList}
+                    _post={this.props.posts}></Dashboard>
             </div>
         )
     }
 }
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

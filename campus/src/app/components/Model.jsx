@@ -6,10 +6,10 @@ class Model extends React.Component {
     }
 
     render() {
-        console.log("showModel", this.props.showModel)
         let style = {
             display: this.props.showModel ? 'block' : 'none',
-            opacity: this.props.showModel ? 1 : 0
+            opacity: this.props.showModel ? 1 : 0,
+            top: "50px"
         }
         return (
 
@@ -26,7 +26,7 @@ class Model extends React.Component {
                                 <div >
                                     <label htmlFor="title">Title</label><br />
                                     <input onChange={this.props._InputHandler} type="text" name="title" id="title" className="form-control" placeholder="Enter Title here.."
-                                        required autoFocus />
+                                        required autoFocus  />
                                 </div>
                                 <br />
                                 <div >

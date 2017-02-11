@@ -10,10 +10,15 @@ class Dashboard extends React.Component {
 
     checkUsetType() {
         if (this.props.userType === 1) {
-            return <AdminData tab={this.props.tab} showData={this.props.showData}></AdminData>
+            return <AdminData 
+            tab={this.props.tab} 
+            _companies={this.props._companies} 
+            showData={this.props.showData}
+            _studentList={this.props._studentList}
+            _post={this.props._post}
+            ></AdminData>
 
         } else if (this.props.userType === 2) {
-            console.log("abc@c.com", this.props.userType)
             return <CompanyData _InputHandler={this.props._InputHandler}/>
         }
         else if (this.props.userType === 3) {

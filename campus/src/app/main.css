@@ -18,7 +18,7 @@
     width: 100%;
 }
 
-.active {    background: black !important;}
+/*.active {    background: black !important;}*/
 
 @media only screen and (max-width: 770px) {
     .flex {
