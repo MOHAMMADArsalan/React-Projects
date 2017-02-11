@@ -12,7 +12,9 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.15.2",
+    "bootstrap": "^3.3.7",
     "firebase": "^3.6.9",
+    "jquery": "^3.1.1",
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.4.1",
     "react-dom": "^15.3.2",

@@ -42,7 +42,7 @@ export class AuthEpics {
                         return Observable.of(err);
                     })
                     .switchMap((d) => {
-                        // console.log('d login ecpis', d)
+                        console.log('d login ecpis', d)
                         if (d.message) {
                             // error
                             return Observable.of({

@@ -43,7 +43,7 @@ class Signin extends React.Component {
                 
                 this.context.router.push({
                     pathname: '/home',
-                    state:this.state.user
+                    state:this.props.user
                 })
             }
         },10)
