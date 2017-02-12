@@ -21,7 +21,7 @@ class AdminData extends React.Component {
         } else if (this.props.tab === 'posts') {
             let headers = ["address", "applied-count", "desc", "email", "name", "salary", "title","delete"]
             return <div className="tab-pane active" id="tab3" style={{ color: 'black' }}>
-                <Table headers={headers} data={this.props._post} type={'post'} _currentUser={this.props._currentUser}></Table>
+                <Table  _deletePost={this.props._deletePost} headers={headers} data={this.props._post} type={'post'} _currentUser={this.props._currentUser}></Table>
             </div>
         }
     }

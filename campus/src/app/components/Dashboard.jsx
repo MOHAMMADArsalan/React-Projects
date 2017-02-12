@@ -17,10 +17,15 @@ class Dashboard extends React.Component {
                 _studentList={this.props._studentList}
                 _post={this.props._post}
                 _currentUser={this.props._currentUser}
-            ></AdminData>
+                _deletePost={this.props._deletePost}
+                ></AdminData>
 
         } else if (this.props.userType === 2) {
-            return <CompanyData _companyPost={this.props._companyPost} _posted={this.props._posted} _PostHandler={this.props._PostHandler} _InputHandler={this.props._InputHandler} />
+            return <CompanyData
+                _deletePost={this.props._deletePost}
+                _companyPost={this.props._companyPost} 
+                _currentUser={this.props._currentUser}
+                _posted={this.props._posted} _PostHandler={this.props._PostHandler} _InputHandler={this.props._InputHandler} />
         }
         else if (this.props.userType === 3) {
             console.log("_currentUser", this.props._currentUser)
@@ -28,7 +33,7 @@ class Dashboard extends React.Component {
                 _post={this.props._post}
                 _currentUser={this.props._currentUser}
                 _apply={this.props._apply}
-            />
+                />
         }
     }
     render() {

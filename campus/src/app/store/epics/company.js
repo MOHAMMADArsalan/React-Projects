@@ -76,12 +76,17 @@ export class CompanyEpics {
             }) => {
                 console.log("payloadddddddddddd", payload)
                 if (payload) {
-                    firebase.database().ref(`/company-posts/${payload.uid}`).off('child_added')
-                    firebase.database().ref(`/company-posts/${payload.uid}`).on('child_added', (snapshot) => {
+                    firebase.database().ref(`/company-posts/${payload.uid}`).off('value')
+                    firebase.database().ref(`/company-posts/${payload.uid}`).on('value', (snapshot) => {
                         if (snapshot.val()) {
-                            let obj = Object.assign({}, snapshot.val());
-                            obj['$key'] = snapshot.key
-                            CompanyAction.addPost(obj);
+                            for (let key in snapshot.val()) {
+                                let obj = Object.assign({}, snapshot.val()[key]);
+                                obj['$key'] = key
+                                CompanyAction.addPost(obj);
+                            }
+                            // let obj = Object.assign({}, snapshot.val());
+                            // obj['$key'] = snapshot.key
+                            // CompanyAction.addPost(obj);
                         }
                     })
                 }
@@ -131,12 +136,17 @@ export class CompanyEpics {
         action$.ofType('GET_POST')
             .switchMap((payload) => {
                 if (payload) {
-                    firebase.database().ref(`/posts`).off('child_added')
-                    firebase.database().ref(`/posts`).on('child_added', (snapshot) => {
+                    firebase.database().ref(`/posts`).off('value')
+                    firebase.database().ref(`/posts`).on('value', (snapshot) => {
                         if (snapshot.val()) {
-                            let obj = Object.assign({}, snapshot.val());
-                            obj['$key'] = snapshot.key
-                            CompanyAction.addPost(obj);
+                             for (let key in snapshot.val()) {
+                                let obj = Object.assign({}, snapshot.val()[key]);
+                                obj['$key'] = key
+                                CompanyAction.addPost(obj);
+                            }
+                            // let obj = Object.assign({}, snapshot.val());
+                            // obj['$key'] = snapshot.key
+                            // CompanyAction.addPost(obj);
                         }
                     })
                 }

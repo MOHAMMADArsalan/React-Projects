@@ -33,6 +33,7 @@ class Home extends React.Component {
         this.showData = this.showData.bind(this);
         this.PostHandler = this.PostHandler.bind(this);
         this.apply = this.apply.bind(this);
+        this.deletePost = this.deletePost.bind(this);
 
     }
     showData(type) {
@@ -115,8 +116,15 @@ class Home extends React.Component {
         })
     }
     apply(multipath) {
-        console.log("multipathhhhhhhhhhh", multipath)
-        FirebaseService.saveMultipath(multipath).then(() => { },
+        FirebaseService.saveMultipath(multipath).then(() => {
+            console.log("applieddddddddddddd")
+        },
+            (err) => { console.log("ERROR: ", err) })
+    }
+    deletePost(multipath) {
+        FirebaseService.saveMultipath(multipath).then(() => {
+            console.log("deletePost")
+         },
             (err) => { console.log("ERROR: ", err) })
     }
     render() {
@@ -135,6 +143,7 @@ class Home extends React.Component {
                     _posted={this.state.posted}
                     _currentUser={this.state.user}
                     _apply={this.apply}
+                    _deletePost={this.deletePost}
                     ></Dashboard>
             </div >
         )

@@ -43,6 +43,13 @@ class TableBody extends React.Component {
             alert("before apply please complete your profile ")
         }
     }
+    deletePost(key, id) {
+        let multipath = {};
+        multipath[`posts/${key}`] = null;
+        let companyId = id ? id : this.props._currentUser.uid;
+        multipath[`company-posts/${companyId}/${key}`] = null;
+        this.props._deletePost(multipath)
+    }
     appliedUser = {}
     render() {
         return (
@@ -65,7 +72,7 @@ class TableBody extends React.Component {
                                 }
                                 if (Object.keys(value.value).length - 1 == cellIndex) {
                                     return <td key={cellIndex}>
-                                        <button className="btn btn-danger">
+                                        <button className="btn btn-danger" onClick={() => { this.deletePost(value.value['$key'], value.value['created-by']), this.props._currentUser.uid } }>
                                             <i className="glyphicon glyphicon-trash"></i> delete
                                         </button>
                                     </td>
@@ -79,7 +86,7 @@ class TableBody extends React.Component {
                                     this.appliedUser = {};
                                     return <td key={cellIndex}>
                                         <button className="btn btn-primary" disabled={user[this.props._currentUser.uid]}>
-                                            {!user[this.props._currentUser.uid] && <span onClick={() => { this.apply(value.value['$key'], value.value['created-by'], value.value['applied-count']) }}>Apply</span>}
+                                            {!user[this.props._currentUser.uid] && <span onClick={() => { this.apply(value.value['$key'], value.value['created-by'], value.value['applied-count']) } }>Apply</span>}
                                             {user[this.props._currentUser.uid] && <span >Applied</span>}
                                         </button>
                                     </td>

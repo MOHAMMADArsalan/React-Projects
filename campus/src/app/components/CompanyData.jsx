@@ -24,7 +24,7 @@ class CompanyData extends React.Component {
         }
     }
     render() {
-         let headers = ["address", "applied-count", "desc", "email", "name", "salary", "title","delete"]
+        let headers = ["address", "applied-count", "desc", "email", "name", "salary", "title", "delete"]
         return (
             <div className="container">
                 <div className="flexSpaceBetween">
@@ -32,7 +32,11 @@ class CompanyData extends React.Component {
                     <button type="button" className="btn btn-primary height35px marginTop20px" data-toggle="modal"
                         data-target="#myModal" onClick={this.toggle}>ADD POST</button>
                 </div>
-                    <Table headers={headers} data={this.props._companyPost} type={'post'} ></Table>
+                <Table headers={headers}
+                    data={this.props._companyPost}
+                    _deletePost={this.props._deletePost}
+                    _currentUser={this.props._currentUser}
+                    type={'post'} ></Table>
                 <Model
                     showModel={this.state.showModel}
                     _InputHandler={this.props._InputHandler}
