@@ -26,20 +26,17 @@ export class CompanyAction {
     static NULL = 'NULL'
     constructor() { }
     static addCompany(payload) {
-        console.log("sssssssssssssssssssssssssssss")
         store.dispatch({
             type: CompanyAction.ADD_COMPANY,
             payload
         })
     }
       static addPost(payload) {
-        console.log("sssssssssssssssssssssssssssss")
         store.dispatch({
             type: CompanyAction.ADD_POST,
             payload
         })
     } static addCompanyPost(payload) {
-        console.log("sssssssssssssssssssssssssssss")
         store.dispatch({
             type: CompanyAction.ADD_COMPANY_POST,
             payload

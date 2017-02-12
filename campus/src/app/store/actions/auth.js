@@ -27,7 +27,6 @@ export class AuthActions {
     }
 
     static register(user) {
-        console.log("usersssssssssssss", user)
         return {
             type: AuthActions.SIGN_UP,
             payload: user
@@ -35,7 +34,6 @@ export class AuthActions {
     }
 
     static login(credentials) {
-        console.log("login",credentials)
         return {
             type: AuthActions.LOGIN,
             payload: credentials

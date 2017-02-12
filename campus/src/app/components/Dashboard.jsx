@@ -10,30 +10,31 @@ class Dashboard extends React.Component {
 
     checkUsetType() {
         if (this.props.userType === 1) {
-            return <AdminData 
-            tab={this.props.tab} 
-            _companies={this.props._companies} 
-            showData={this.props.showData}
-            _studentList={this.props._studentList}
-            _post={this.props._post}
+            return <AdminData
+                tab={this.props.tab}
+                _companies={this.props._companies}
+                showData={this.props.showData}
+                _studentList={this.props._studentList}
+                _post={this.props._post}
+                _currentUser={this.props._currentUser}
             ></AdminData>
 
         } else if (this.props.userType === 2) {
-            return <CompanyData _companyPost={this.props._companyPost} _posted={this.props._posted} _PostHandler={this.props._PostHandler} _InputHandler={this.props._InputHandler}/>
+            return <CompanyData _companyPost={this.props._companyPost} _posted={this.props._posted} _PostHandler={this.props._PostHandler} _InputHandler={this.props._InputHandler} />
         }
         else if (this.props.userType === 3) {
-            console.log("_currentUser",this.props._currentUser)
-            return <UserData 
-            _post={this.props._post}
-            _currentUser={this.props._currentUser}
-            _apply={this.props._apply}
+            console.log("_currentUser", this.props._currentUser)
+            return <UserData
+                _post={this.props._post}
+                _currentUser={this.props._currentUser}
+                _apply={this.props._apply}
             />
         }
     }
     render() {
         return (
-              <div>
-                <Navbar type={this.props.userType}/>
+            <div>
+                <Navbar type={this.props.userType} />
                 <div className="container">
                     {this.checkUsetType()}
                 </div>

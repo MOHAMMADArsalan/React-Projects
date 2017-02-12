@@ -24,7 +24,7 @@ class CompanyData extends React.Component {
         }
     }
     render() {
-         let headers = ["address", "applied", "applied-count", "desc", "email", "name", "salary", "title"]
+         let headers = ["address", "applied-count", "desc", "email", "name", "salary", "title","delete"]
         return (
             <div className="container">
                 <div className="flexSpaceBetween">

@@ -51,7 +51,6 @@ export class AuthEpics {
 
     static login = (action$) =>
         action$.ofType(AuthActions.LOGIN)
-        // .do(x => { console.log("login ecpis =-=-=-=-=-=-=-=-=-=-=-=-=-", x) })
         .switchMap(({
             payload
         }) => {
@@ -70,7 +69,6 @@ export class AuthEpics {
                             payload: d.message
                         });
                     } else {
-                        console.log('22222222222222222222', d)
                         return Observable.fromPromise(firebase.database().ref('/').child(`users/${d.uid}`).once('value'))
                             .map(u => {
                                 //set local storage
@@ -78,8 +76,6 @@ export class AuthEpics {
                                 obj["uid"] = d.uid,
                                     obj = Object.assign({}, obj, u.val())
                                 AuthEpics.setLocalStorage(JSON.stringify(obj))
-                                console.log("usersssssssssssssssss", u.val())
-                                    // localStorage.setItem('react-localStorage-user', JSON.stringify(u.val()));
                                 return {
                                     type: AuthActions.LOGIN_SUCCESS,
                                     payload: obj
@@ -88,26 +84,7 @@ export class AuthEpics {
                     }
                 })
         })
-        // action$.ofType(AuthActions.LOGIN)
-        //     .switchMap(({payload}) =>
-        //         firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then((auth) => {
-        //             AuthEpics.setLocalStorage(auth)
-        //             console.log("auth", auth)
-        //             return Observable.fromPromise(firebase.database().ref('/').child(`users/${payload.uid}`).once('value'))
-        //                 .map(u => {
-        //                     return {
-        //                         type: AuthActions.LOGIN_SUCCESS,
-        //                         payload: u.val()
-        //                     }
-        //                 })
-        //         }, (err) => {
-        //             console.log("LOGIN_FAIL")
-        //             return {
-        //                 type: AuthActions.LOGIN_FAIL,
-        //                 payload: {}
-        //             };
-        //         })
-        //     );
+       
     getUserInfo = (action$) =>
         action$.ofType('GET_USER_INFO')
         .switchMap(({

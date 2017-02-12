@@ -60,17 +60,26 @@ class TableBody extends React.Component {
                                 }
 
                             } else if (this.props.type === 'post') {
-                                console.log(key, value.value[key])
-
+                                if (this.post[key] == key) {
+                                    return <td key={cellIndex}> {value.value[key]}</td>
+                                }
+                                if (Object.keys(value.value).length - 1 == cellIndex) {
+                                    return <td key={cellIndex}>
+                                        <button className="btn btn-danger">
+                                            <i className="glyphicon glyphicon-trash"></i> delete
+                                        </button>
+                                    </td>
+                                }
+                            } else if (this.props.type === 'post-student') {
                                 if (key == 'applied' && value.value[key]) {
                                     this.appliedUser = Object.assign({}, this.appliedUser, value.value[key]) // this.appliedUser.push(value.value[key])
                                 }
-                                if (Object.keys(value.value).length - 1 == cellIndex) {
+                                if (Object.keys(value.value).length - 1 == cellIndex && this.props._currentUser.type == 3) {
                                     let user = Object.assign({}, this.appliedUser)
                                     this.appliedUser = {};
                                     return <td key={cellIndex}>
                                         <button className="btn btn-primary" disabled={user[this.props._currentUser.uid]}>
-                                            {!user[this.props._currentUser.uid] && <span onClick={() => { this.apply(value.value['$key'], value.value['created-by'], value.value['applied-count']) } }>Apply</span>}
+                                            {!user[this.props._currentUser.uid] && <span onClick={() => { this.apply(value.value['$key'], value.value['created-by'], value.value['applied-count']) }}>Apply</span>}
                                             {user[this.props._currentUser.uid] && <span >Applied</span>}
                                         </button>
                                     </td>

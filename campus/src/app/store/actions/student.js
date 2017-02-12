@@ -14,7 +14,6 @@ export class StudentAction {
     static NULL = 'NULL'
     constructor() { }
       static addStudent(payload) {
-        console.log("sssssssssssssssssssssssssssss")
         store.dispatch({
             type: StudentAction.ADD_STUDENT,
             payload
