@@ -2,7 +2,7 @@ import * as React from "react";
 import AdminData from "./AdminData.jsx";
 import UserData from "./UserData.jsx";
 import CompanyData from "./CompanyData.jsx";
-
+import Navbar from "./NavBar.jsx"
 class Dashboard extends React.Component {
     constructor() {
         super();
@@ -19,30 +19,26 @@ class Dashboard extends React.Component {
             ></AdminData>
 
         } else if (this.props.userType === 2) {
-            return <CompanyData _InputHandler={this.props._InputHandler}/>
+            return <CompanyData _companyPost={this.props._companyPost} _posted={this.props._posted} _PostHandler={this.props._PostHandler} _InputHandler={this.props._InputHandler}/>
         }
         else if (this.props.userType === 3) {
-            return <UserData />
+            console.log("_currentUser",this.props._currentUser)
+            return <UserData 
+            _post={this.props._post}
+            _currentUser={this.props._currentUser}
+            _apply={this.props._apply}
+            />
         }
     }
     render() {
         return (
-            <div className="container">
-                {this.checkUsetType()}
+              <div>
+                <Navbar type={this.props.userType}/>
+                <div className="container">
+                    {this.checkUsetType()}
+                </div>
             </div>
         )
     }
 }
 export default Dashboard;
-
-//  <div className="container">
-//                     <h1>POST LIST </h1>
-
-//                 </div>
-//                 <div className="container" >
-//                     <div className="flex">
-//                         <h1>POST LIST</h1>
-//                         <button type="button" className="btn btn-primary height35px marginTop20px" data-toggle="modal"
-//                             data-target="#myModal">ADD POST</button>
-//                     </div>
-//                 </div>

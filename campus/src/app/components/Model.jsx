@@ -6,6 +6,7 @@ class Model extends React.Component {
     }
 
     render() {
+        console.log(" this.props.showModel", this.props.showModel)
         let style = {
             display: this.props.showModel ? 'block' : 'none',
             opacity: this.props.showModel ? 1 : 0,
@@ -21,7 +22,7 @@ class Model extends React.Component {
                             <h4 className="modal-title">
                             </h4>
                         </div>
-                        <form className="col-sm-12" >
+                        <form className="col-sm-12" onSubmit={this.props._PostHandler}>
                             <div className="modal-body">
                                 <div >
                                     <label htmlFor="title">Title</label><br />

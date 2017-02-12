@@ -2,6 +2,7 @@ import { store } from "./../index.js"
 export class CompanyAction {
     static ADD_COMPANY = 'ADD_COMPANY';
     static ADD_POST = 'ADD_POST';
+    static ADD_COMPANY_POST = 'ADD_COMPANY_POST';
 
     static GET_COMPANY = 'GET_COMPANY';
     static GET_COMPANY_SUCCESS = 'GET_COMPANY_SUCCESS';
@@ -35,6 +36,12 @@ export class CompanyAction {
         console.log("sssssssssssssssssssssssssssss")
         store.dispatch({
             type: CompanyAction.ADD_POST,
+            payload
+        })
+    } static addCompanyPost(payload) {
+        console.log("sssssssssssssssssssssssssssss")
+        store.dispatch({
+            type: CompanyAction.ADD_COMPANY_POST,
             payload
         })
     }

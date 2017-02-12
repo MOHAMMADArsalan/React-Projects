@@ -5,7 +5,8 @@ const InitailState = {
     companies: [],
     posts: [],
     temp: {},
-    isLoading: false
+    isLoading: false,
+    companyPost:[]
 }
 
 export const companyReducer = (state = InitailState, action) => {
@@ -14,7 +15,9 @@ export const companyReducer = (state = InitailState, action) => {
         case 'ADD_POST':
             newState = state.posts;
             newState.push({ value: action.payload });
-            return Object.assign({}, state, { posts: newState });
+            // newState = newState.reverse();
+        console.log("postsssssssssssssssssssss",newState)
+            return Object.assign({}, state, { posts: newState.reverse() });
         case 'ADD_COMPANY':
             newState = state.companies;
             console.log("newState companies",newState)

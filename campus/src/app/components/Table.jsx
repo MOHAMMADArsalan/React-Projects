@@ -10,7 +10,9 @@ class Table extends React.Component {
             <div className="table-responsive text-center">
                 <table className="table table-striped">
                     <TableHeader headers={this.props.headers} />
-                    <TableBody data={this.props.data} type={this.props.type}/>
+                    <TableBody _currentUser={this.props._currentUser}
+                        _apply={this.props._apply}
+                        data={this.props.data.reverse()} type={this.props.type} />
                 </table>
             </div>
         )
