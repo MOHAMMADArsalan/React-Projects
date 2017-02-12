@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { Link } from "react-router"
 class SigninComponent extends React.Component {
     constructor() {
         super();
@@ -32,7 +32,7 @@ class SigninComponent extends React.Component {
                     <br />
                     <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
                 </form>
-                <div className="col-sm-4 col-sm-offset-4 text-center" style={{ marginTop: "10px" }}> Don't have account?? <a className="cursor-pointer">Create an account.</a>
+                <div className="col-sm-4 col-sm-offset-4 text-center" style={{ marginTop: "10px" }}> Don't have account?? <Link to="/signup" style={{cursor:"pointer"}}>Create an account.</Link>
                 </div>
             </div>
         )

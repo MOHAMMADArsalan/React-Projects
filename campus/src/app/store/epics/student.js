@@ -8,6 +8,7 @@ export class StudentEpics {
         action$.ofType('GET_STUDENTS')
             .switchMap((payload) => {
                 if (payload) {
+                    firebase.database().ref("/").child('users').off('child_added')
                     firebase.database().ref("/").child('users').orderByChild('type').equalTo(3).on('child_added', (snapshot) => {
                         if (snapshot.val()) {
                             let obj = Object.assign({}, snapshot.val());

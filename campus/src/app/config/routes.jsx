@@ -26,6 +26,8 @@ let routes = (
                 <Route component={Dashboard} onEnter={check}>
                     <IndexRoute component={Home}></IndexRoute>
                     <Route path="home" component={Home}></Route>
+                    <Route path="profile" component={Signup}></Route>
+
                 </Route>
             </Route>
         </Router>
