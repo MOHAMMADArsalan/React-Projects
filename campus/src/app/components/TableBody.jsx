@@ -24,12 +24,22 @@ class TableBody extends React.Component {
     postStudents = {
         "address": "address", "desc": "desc", "email": "email", "salary": "salary", "title": "title"
     }
-    apply(key, createdBy, count) {
+    apply(key, companyId, count) {
         if (this.props._currentUser.status) {
-            this.props._apply({ key, createdBy, count })
-            console.log("applyyyyyyyyyyyyyyyyyyy", key, createdBy, count)
-            console.log("this.props._currentUser", this.props._currentUser)
-        } else { 
+            let multipath = {};
+            let userObj = {};
+            userObj['email'] = this.props._currentUser.email;
+            userObj['name'] = this.props._currentUser.name;
+            userObj['firstname'] = this.props._currentUser.firstname;
+            userObj['lastname'] = this.props._currentUser.lastname;
+            userObj['uid'] = this.props._currentUser.uid;
+
+            multipath[`posts/${key}/applied/${this.props._currentUser.uid}`] = userObj;
+            multipath[`company-posts/${companyId}/${key}/applied-count`] = count + 1;
+            multipath[`company-posts/${companyId}/${key}/applied/${this.props._currentUser.uid}`] = userObj
+            multipath[`posts/${key}/applied-count`] = count + 1;
+            this.props._apply(multipath)
+        } else {
             alert("before apply please complete your profile ")
         }
     }

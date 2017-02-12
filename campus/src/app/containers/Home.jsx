@@ -116,6 +116,8 @@ class Home extends React.Component {
     }
     apply(multipath) {
         console.log("multipathhhhhhhhhhh", multipath)
+        FirebaseService.saveMultipath(multipath).then(() => { },
+            (err) => { console.log("ERROR: ", err) })
     }
     render() {
         return (
