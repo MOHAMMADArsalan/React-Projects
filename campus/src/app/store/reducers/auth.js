@@ -15,7 +15,6 @@ export const authReducer = function (state= InitalState, action) {
     case AuthActions.LOGIN_FAIL:
       return Object.assign({}, state, { isLoading: false, isLoggedin: false, user: {} });
     case AuthActions.LOGIN_SUCCESS:
-    console.log("isLoggedin")
       return Object.assign({}, state, { isLoading: false, isLoggedin: true, user: action.payload });
     case AuthActions.LOGOUT_FAIL:
       return Object.assign({}, state, { isLoading: false });
@@ -29,13 +28,7 @@ export const authReducer = function (state= InitalState, action) {
       return Object.assign({}, state, { isLoading: false, isRegistered: true });
     case AuthActions.SIGN_UP_FAIL:
       return Object.assign({}, state, { isLoading: false, isError: action.payload.isError });
-    
-    // case AuthActions.GET_USER_INFO:
-    // console.log("GET_USER_INFO fcfcfcfcfcfcfcfcfcfcfcfcfcfcfcfc")
-    
-    //   return Object.assign({}, state, { isLoadding: true });
     case AuthActions.GET_USER_INFO_SUCCESS:
-    console.log("GET_USER_INFO_SUCCESS")
       return Object.assign({}, state, { user: action.payload, isLoading: false });
     case AuthActions.GET_USER_INFO_FAIL:
       return Object.assign({}, state, { isLoadding: false });

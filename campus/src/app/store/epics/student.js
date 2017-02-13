@@ -20,9 +20,6 @@ export class StudentEpics {
                             obj['$key'] = key
                             StudentAction.addStudent(obj);
                         }
-                        // let obj = Object.assign({}, snapshot.val());
-                        // obj['$key'] = snapshot.key
-                        // StudentAction.addStudent(obj);
                     }
                 })
             }

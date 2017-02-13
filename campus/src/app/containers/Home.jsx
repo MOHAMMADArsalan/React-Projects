@@ -51,7 +51,6 @@ class Home extends React.Component {
     componentWillMount() {
         if (!this.props.location.state) {
             let user = JSON.parse(localStorage.getItem("Campus-Recruitment-System"));
-            console.log("Campus-Recruitment-System", JSON.parse(user))
             if (user) {
                 user = JSON.parse(user);
                 this.setState({
@@ -67,15 +66,12 @@ class Home extends React.Component {
                 user: this.props.location.state
             })
         }
-        console.log("propsssssssss", this.props)
-        // t.location
     }
     componentDidMount() {
         setTimeout(() => {
             this.setState({
                 posts: this.props.posts
             })
-            console.log("this.props.post", this.props.posts)
             if (this.state.userType === 2) {
             }
         }, 3000)
@@ -110,7 +106,6 @@ class Home extends React.Component {
             this.setState({
                 posted: true
             })
-            console.log("posteddddddddddd");
         }, (err) => {
             console.log("ERROR: ", err)
         })

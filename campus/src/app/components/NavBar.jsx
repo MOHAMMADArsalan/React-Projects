@@ -3,7 +3,7 @@ import { Link } from "react-router";
 // import { AuthActions } from "./../store/actions/auth.js";
 // import { connect } from "react-redux"
 // function mapDispatchToProp(dispatch) {
-//     logout: () => { dispatch(AuthActions.logout()) }
+//     Logout: () => { dispatch(AuthActions.logout()) }
 // }
 class Navbar extends React.Component {
     constructor() {
@@ -42,7 +42,7 @@ class Navbar extends React.Component {
                             <div id="navbar" className="navbar-collapse collapse">
                                 <ul className="nav navbar-nav">
                                     <li ><Link to="/home">Dashboard</Link></li>
-                                    {this.props.type === 1 && <li ><a >Add Company</a></li>}
+                                    {this.props.type === 1 && <li > <Link to="/add-company">Add Company</Link></li>}
                                     {this.props.type === 3 && <li><a onClick={this.goToProfile}> Profile</a></li>}
                                     <li className="cursor"><a onClick={this.logout}>Logout</a></li>
                                 </ul>

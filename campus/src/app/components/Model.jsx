@@ -6,7 +6,6 @@ class Model extends React.Component {
     }
 
     render() {
-        console.log(" this.props.showModel", this.props.showModel)
         let style = {
             display: this.props.showModel ? 'block' : 'none',
             opacity: this.props.showModel ? 1 : 0,

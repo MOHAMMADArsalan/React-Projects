@@ -28,7 +28,6 @@ class Dashboard extends React.Component {
                 _posted={this.props._posted} _PostHandler={this.props._PostHandler} _InputHandler={this.props._InputHandler} />
         }
         else if (this.props.userType === 3) {
-            console.log("_currentUser", this.props._currentUser)
             return <UserData
                 _post={this.props._post}
                 _currentUser={this.props._currentUser}

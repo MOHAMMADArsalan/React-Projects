@@ -32,6 +32,7 @@ class Signup extends React.Component {
         this.inputHandler = this.inputHandler.bind(this)
     }
     isProfileRoute = false;
+    isCompanyRoute = false;
     type = 3;
     inputHandler(e) {
         this.setState({
@@ -53,20 +54,33 @@ class Signup extends React.Component {
                 status: this.state.status,
                 type: this.state.type
             }
-            if (this.state.gpa != '' || this.state.year != '') {
+            if (this.state.gpa != '' && this.state.year != '') {
                 newObj['status'] = true
             }
+
             multipath[`users/${this.state.uid}`] = newObj;
             FirebaseService.saveMultipath(multipath).then(() => {
-                console.log("Savedddddddddddd", multipath)
                 newObj['uid'] = this.state.uid
-                console.log("newObj",newObj)
-                 localStorage.setItem('Campus-Recruitment-System', JSON.stringify(JSON.stringify(newObj)));
+                localStorage.setItem('Campus-Recruitment-System', JSON.stringify(JSON.stringify(newObj)));
                 this.context.router.push({
                     pathname: "/home"
                 })
             }, (err) => { console.log("ERROR: ", err) })
-        } else {
+        }
+        else if (this.isCompanyRoute) {
+            let newObj = {
+                email: this.state.email,
+                name: this.state.name,
+                type: 2,
+                address: this.state.address,
+                password: this.state.password,
+            }
+            this.props.signUp(newObj);
+            this.context.router.push({
+                pathname: "/home"
+            })
+        }
+        else {
             let obj = Object.assign({}, this.state);
             obj['type'] = 3;
             obj['gpa'] = "";
@@ -77,22 +91,6 @@ class Signup extends React.Component {
                 pathname: "/signin"
             })
         }
-        // browserHistory.push("/signin")
-        console.log("inputHandler", this.state)
-    }
-    componentWillReceiveProps() {
-        setTimeout(() => {
-            console.log('propsssssss................ ', this.props)
-            // if (this.props.counterReg > 0 && this.props.activeUser.type == 'admin') {
-            //     browserHistory.push('/home');
-            // }
-            // if (this.props.isRegistered && this._flag && this.props.activeUser.type != 'admin') {
-            //     this._flag = false;
-            //     browserHistory.push('/login');
-            // } else if (!this.props.isRegistered && !this._flag) {
-            //     this._flag = true;
-            // }
-        }, 5);
     }
     componentWillMount() {
         let user = JSON.parse(localStorage.getItem("Campus-Recruitment-System"));
@@ -103,13 +101,18 @@ class Signup extends React.Component {
             this.type = user.type;
             this.setState(user)
         }
-        console.log("ssssssssssssssssssssss", this.props.user)
+        else if (this.props.location.pathname === '/add-company') {
+            this.isCompanyRoute = true;
+            user = JSON.parse(user)
+            this.type = user.type;
+            this.setState(user)
+        }
     }
     render() {
         return (
             <div>
-                {this.isProfileRoute ? <Navbar type={this.type}></Navbar> : <NavLoginBar></NavLoginBar>}
-                <SignupComponent user={this.state} isProfileRoute={this.isProfileRoute} _inputHandler={this.inputHandler} _submit={this.submit} />
+                {(this.isProfileRoute || this.isCompanyRoute) ? <Navbar type={this.type}></Navbar> : <NavLoginBar></NavLoginBar>}
+                <SignupComponent user={this.state} isCompanyRoute={this.isCompanyRoute} isProfileRoute={this.isProfileRoute} _inputHandler={this.inputHandler} _submit={this.submit} />
             </div>
         )
     }

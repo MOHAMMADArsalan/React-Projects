@@ -11,7 +11,6 @@ class CompanyData extends React.Component {
         this.toggle = this.toggle.bind(this);
     }
     toggle() {
-        console.log("toggle", this.state)
         this.setState({
             showModel: !this.state.showModel
         })

@@ -7,21 +7,21 @@ class SignupComponent extends React.Component {
     render() {
         return (
             <div className="container text-center" style={{ marginTop: "50px" }}>
-                <h2 className="form-signin-heading col-sm-4 col-sm-offset-4">{this.props.isProfileRoute ? <span>Edit</span> : <span>Please Sign up</span>}</h2>
+                <h2 className="form-signin-heading col-sm-4 col-sm-offset-4">{(this.props.isProfileRoute) ? <span>Edit</span> : <span>Register</span>}</h2>
                 <form className="col-sm-4 col-sm-offset-4 auth-form-body" onSubmit={this.props._submit} >
                     <div>
-                        <label htmlFor="Username" className="pull-left">Username</label>
+                        <label htmlFor="Username" className="pull-left">{this.props.isCompanyRoute ? <span> Name</span> : <span>Username</span>}</label>
                         <input type="text" name="name"
                             id="Username" className="form-control"
                             placeholder="Username"
                             required autoFocus
                             value={this.props.user.name}
                             onChange={this.props._inputHandler}
-                        />
+                            />
+                        <br />
                     </div>
-                    <br />
-                    
-                    <div>
+
+                    {!this.props.isCompanyRoute && <div>
                         <label htmlFor="Firstname" className="pull-left">Firstname</label>
                         <input type="text" name="firstname"
                             id="Firstname" className="form-control"
@@ -29,11 +29,11 @@ class SignupComponent extends React.Component {
                             required autoFocus
                             value={this.props.user.firstname}
                             onChange={this.props._inputHandler}
-                        />
-                    </div>
-                    <br />
-                    
-                    <div>
+                            />
+                    </div>}
+
+                    {!this.props.isCompanyRoute && <div>
+                        <br />
                         <label htmlFor="Lastname" className="pull-left">Lastname</label>
                         <input type="text" name="lastname"
                             id="Lastname" className="form-control"
@@ -41,10 +41,33 @@ class SignupComponent extends React.Component {
                             required autoFocus
                             value={this.props.user.lastname}
                             onChange={this.props._inputHandler}
-                        />
-                    </div>
-                    <br />
-                    <div>
+                            />
+                        <br />
+                    </div>}
+                    {this.props.isCompanyRoute && <div>
+                        <br />
+                        <label htmlFor="Address" className="pull-left">Address</label>
+                        <input type="text" name="address"
+                            id="Address" className="form-control"
+                            placeholder="Address"
+                            required autoFocus
+                            // value={this.props.user.address}
+                            onChange={this.props._inputHandler}
+                            />
+                        <br />
+                    </div>}
+                    {this.props.isCompanyRoute && <div>
+                        <label htmlFor="inputEmail" className="pull-left">Email address</label>
+                        <input type="email" name="email"
+                            id="inputEmail" className="form-control"
+                            placeholder="Email address"
+                            required
+                            // disabled={this.props.isProfileRoute}
+                            // value={this.props.user.email}
+                            onChange={this.props._inputHandler}
+                            />
+                    </div>}
+                    {this.props.isProfileRoute &&  <div>
                         <label htmlFor="inputEmail" className="pull-left">Email address</label>
                         <input type="email" name="email"
                             id="inputEmail" className="form-control"
@@ -53,8 +76,8 @@ class SignupComponent extends React.Component {
                             disabled={this.props.isProfileRoute}
                             value={this.props.user.email}
                             onChange={this.props._inputHandler}
-                        />
-                    </div>
+                            />
+                    </div>}
                     <br />
                     {!this.props.isProfileRoute &&
                         <div >
@@ -64,9 +87,10 @@ class SignupComponent extends React.Component {
                                 placeholder="Password"
                                 required
                                 onChange={this.props._inputHandler}
-                            />
+                                />
                         </div>
                     }
+
                     {this.props.isProfileRoute &&
                         <div>
                             <label htmlFor="Year" className="pull-left">Year</label>
@@ -77,7 +101,7 @@ class SignupComponent extends React.Component {
                                 value={this.props.user.year}
 
                                 onChange={this.props._inputHandler}
-                            />
+                                />
                         </div>
                     }
                     <br />
@@ -90,7 +114,7 @@ class SignupComponent extends React.Component {
                                 required
                                 value={this.props.user.gpa}
                                 onChange={this.props._inputHandler}
-                            />
+                                />
                         </div>
                     }
                     <br />
