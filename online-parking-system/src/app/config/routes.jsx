@@ -4,7 +4,9 @@ import Signin from "./../containers/Signin.jsx"
 import Signup from "./../containers/Signup.jsx";
 import Main from "./../containers/Main.jsx";
 import Dashboard from "./../containers/Dashboard.jsx"
-import Home from "./../containers/Home.jsx"
+import Home from "./../containers/Home.jsx";
+import Slot from "./../containers/Slot.jsx";
+import ParkingDetail from "./../containers/details.jsx";
 import { store } from "./../store/index.js";
 import { Provider } from "react-redux";
 function check(nextState, replace) {
@@ -27,7 +29,8 @@ let routes = (
                     <IndexRoute component={Home}></IndexRoute>
                     <Route path="home" component={Home}></Route>
                     <Route path="profile" component={Signup}></Route>
-                    <Route path="add-company" component={Signup}></Route>
+                    <Route path="add-slot" component={Slot}></Route>
+                    <Route path="parking-detail" component={ParkingDetail}></Route>
 
                 </Route>
             </Route>

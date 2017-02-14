@@ -2,20 +2,16 @@ import * as React from "react";
 import Dashboard from "./../components/Dashboard.jsx";
 import { connect } from "react-redux";
 import { ParkingAction } from "./../store/actions/index.js";
-import { FirebaseService } from "./../services/FirebaseService.js"
+import { FirebaseService } from "./../services/FirebaseService.js";
 function mapStateToProps(state) {
     return {
         parkings: state.parkingReducer['parkings']
-        // posts: state.companyReducer['posts'],
-        // companyPost: state.companyReducer['companyPost']
     }
 }
 function mapDispatchToProps(dispatch) {
     return {
-        getParkingLocation: () => { dispatch(ParkingAction.getParking()) }
-        // getCompanies: () => { dispatch(CompanyAction.getCompany()) },
-        // getPosts: () => { dispatch(CompanyAction.getPosts()) },
-        // getPostByCompany: (uid) => { dispatch(CompanyAction.getPostByCompany(uid)) }
+        getParkingLocation: () => { dispatch(ParkingAction.getParking()) },
+        getParkingDetailByUser: (uid) => { dispatch(ParkingAction.getParkingDetailByUser(uid)) },
     }
 }
 class Home extends React.Component {
@@ -25,15 +21,14 @@ class Home extends React.Component {
             tab: 'company',
             post: { salary: '', title: '', desc: '' },
             posted: false,
-            posts: []
+            posts: [],
+            isFeedbackSend: false,
+            feedback: ''
         }
 
-        // this.InputHandler = this.InputHandler.bind(this);
         this.showData = this.showData.bind(this);
-        // this.PostHandler = this.PostHandler.bind(this);
-        // this.apply = this.apply.bind(this);
-        // this.deletePost = this.deletePost.bind(this);
-
+        this.feedBackHandler = this.feedBackHandler.bind(this);
+        this.sendFeedBack = this.sendFeedBack.bind(this);
     }
     showData(type) {
         this.setState({
@@ -49,7 +44,7 @@ class Home extends React.Component {
     }
     componentWillMount() {
         if (!this.props.location.state) {
-            let user = JSON.parse(localStorage.getItem("Campus-Recruitment-System"));
+            let user = JSON.parse(localStorage.getItem("online"));
             if (user) {
                 user = JSON.parse(user);
                 this.setState({
@@ -57,8 +52,6 @@ class Home extends React.Component {
                     user: user
                 })
             }
-            // user = JSON.parse(user);
-            // if ()
         } else {
             this.setState({
                 userType: this.props.location.state.type,
@@ -66,60 +59,38 @@ class Home extends React.Component {
             })
         }
     }
+    feedBackHandler(e) {
+        this.setState({
+            feedback: e.target.value
+        })
+    }
+    sendFeedBack() {
+        let multipath = {};
+        let Obj = {};
+        let key = FirebaseService.getPushRef("/feedback").key
+        Obj['feedback'] = this.state.feedback;
+        Obj['timestamp'] = FirebaseService.firebaseTimeStamp;
+        Obj['name'] = this.state.user.firstname + " " + this.state.user.lastname;
+        Obj['feedback-by'] = this.state.user.uid;
+        Obj['email'] = this.state.user.email;
+        multipath[`feedback/${key}`] = Obj;
+        FirebaseService.saveMultipath(multipath).then(() => {
+            this.setState({
+                isFeedbackSend: true,
+                feedback: ''
+            })
+        }, (err) => { console.log("ERROR: ", err) })
+    }
     componentDidMount() {
-        setTimeout(() => {
-            // this.setState({
-            //     // posts: this.props.posts
-            // })
-            if (this.state.userType === 2) {
-                console.log("propssssssssssssssssssssss", this.props.parkings)
-            }
-        }, 3000)
         if (this.state.userType) {
             if (this.state.userType === 1) {
-                // this.props.getCompanies();
-                // this.props.getPosts()
             } else if (this.state.userType === 2) {
+                this.props.getParkingDetailByUser(this.state.user.uid)
                 this.props.getParkingLocation()
-                // this.props.getPostByCompany(this.state.user.uid)
             }
         }
     }
-    // PostHandler(e) {
-    //     e.preventDefault();
-    //     let pushKey = FirebaseService.getPushRef('/posts').key;
-    //     let multipath = {};
-    //     let Obj = this.state.post;
-    //     Obj['applied-count'] = 0;
-    //     Obj['timestamp'] = FirebaseService.firebaseTimeStamp;
-    //     Obj['name'] = this.state.user.name;
-    //     Obj['address'] = this.state.user.address;
-    //     Obj['email'] = this.state.user.email;
-    //     Obj['applied'] = "";
-    //     multipath[`company-posts/${this.state.user.uid}/${pushKey}`] = Obj;
-    //     let newObj = Object.assign({}, Obj);
-    //     newObj['created-by'] = this.state.user.uid;
-    //     multipath[`posts/${pushKey}`] = newObj;
-    //     FirebaseService.saveMultipath(multipath).then(() => {
-    //         this.setState({
-    //             posted: true
-    //         })
-    //     }, (err) => {
-    //         console.log("ERROR: ", err)
-    //     })
-    // }
-    // apply(multipath) {
-    //     FirebaseService.saveMultipath(multipath).then(() => {
-    //         console.log("applieddddddddddddd")
-    //     },
-    //         (err) => { console.log("ERROR: ", err) })
-    // }
-    // deletePost(multipath) {
-    //     FirebaseService.saveMultipath(multipath).then(() => {
-    //         console.log("deletePost")
-    //      },
-    //         (err) => { console.log("ERROR: ", err) })
-    // }
+
     render() {
         return (
             <div>
@@ -128,6 +99,10 @@ class Home extends React.Component {
                     userType={this.state.userType}
                     _currentUser={this.state.user}
                     _parkings={this.props.parkings}
+                    feedBackHandler={this.feedBackHandler}
+                    sendFeedBack={this.sendFeedBack}
+                    isFeedbackSend={this.state.isFeedbackSend}
+                    feedback={this.state.feedback}
                     ></Dashboard>
             </div>
         )

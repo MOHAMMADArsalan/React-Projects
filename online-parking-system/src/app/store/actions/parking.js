@@ -1,9 +1,9 @@
 import { store } from "./../index.js"
 export class ParkingAction {
-    
+
     static ADD_PARKING_LOCATION = 'ADD_PARKING_LOCATION';
 
-    
+
     static GET_PARKING_LOCATION = 'GET_PARKING_LOCATION';
     static GET_PARKING_LOCATION_SUCCESS = 'GET_PARKING_LOCATION_SUCCESS';
     static GET_PARKING_LOCATION_FAIL = 'GET_PARKING_LOCATION_FAIL';
@@ -28,12 +28,18 @@ export class ParkingAction {
             payload
         })
     }
-    static addPost(payload) {
+    static addParkingAvailblity(payload) {
         store.dispatch({
-            type: CompanyAction.ADD_POST,
+            type: ParkingAction.GET_PARKING_LOCATION_AVAILABLITY_SUCCESS,
             payload
         })
-    } 
+    }
+    static addParkingItem(payload) {
+        store.dispatch({
+            type: ParkingAction.GET_PARKING_DETAILS_BY_USER_SUCCESS,
+            payload
+        })
+    }
     static addCompanyPost(payload) {
         store.dispatch({
             type: CompanyAction.ADD_COMPANY_POST,
@@ -46,17 +52,18 @@ export class ParkingAction {
         }
     }
     static getParkingDetailByUser(uid) {
+        console.log("getParkingDetailByUser",uid)
         return {
-            type: CompanyAction.GET_PARKING_DETAILS_BY_USER,
+            type: ParkingAction.GET_PARKING_DETAILS_BY_USER,
             payload: { uid }
         }
     }
+    // static getOneParkingData(locationId, slotId) {
+    //     return {
+    //         type: CompanyAction.GET_POST
+    //     }
+    // }
     static getOneParkingData(locationId, slotId) {
-        return {
-            type: CompanyAction.GET_POST
-        }
-    }
-    static getOnePostByCompany(coId, key) {
         return {
             type: ParkingAction.GET_ONE_PARKING_DATA,
             payload: { locationId, slotId }

@@ -7,13 +7,11 @@ class Table extends React.Component {
     }
     render() {
         return (
-            <div className="table-responsive text-center">
+            <div className="table-responsive text-center container">
                 <table className="table table-striped">
                     <TableHeader headers={this.props.headers} />
                     <TableBody _currentUser={this.props._currentUser}
-                        _deletePost={this.props._deletePost}
-                        _apply={this.props._apply}
-                        data={this.props.data} type={this.props.type} />
+                        data={this.props.parkingDetail} delete={this.props.delete}/>
                 </table>
             </div>
         )

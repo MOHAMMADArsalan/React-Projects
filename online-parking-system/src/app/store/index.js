@@ -17,8 +17,10 @@ import { AuthEpics, ParkingEpics } from "./epics/index.js";
 export const rootEpic = combineEpics(
     AuthEpics.register,
     AuthEpics.login,
-    ParkingEpics.getParkingLocation
-    // CompanyEpics.getCompanies,
+    ParkingEpics.getParkingLocation,
+    ParkingEpics.getOneParkingData,
+    ParkingEpics.getParkingAvailablity,
+    ParkingEpics.getParkingDetailByUser
     // CompanyEpics.getCompanyPost,
     // CompanyEpics.getOneCompanyPost,
     // CompanyEpics.getPosts,

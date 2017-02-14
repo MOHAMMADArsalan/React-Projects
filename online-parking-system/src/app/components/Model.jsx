@@ -24,30 +24,21 @@ class Model extends React.Component {
                         <form className="col-sm-12" onSubmit={this.props._PostHandler}>
                             <div className="modal-body">
                                 <div >
-                                    <label htmlFor="title">Title</label><br />
-                                    <input onChange={this.props._InputHandler} type="text" name="title" id="title" className="form-control" placeholder="Enter Title here.."
-                                        required autoFocus  />
+                                    <label htmlFor="Feedback">Feedback</label><br />
+                                    <textarea style={{ width: '100%', reSize: 'none' }}
+                                        id="Feedback" cols="30" rows="10"
+                                        placeholder="Please Enter Your Feedback Here....."
+                                        onChange={this.props.feedBackHandler}
+                                        defaultValue={this.props.feedback}
+                                        ></textarea>
+                                    <button className="btn btn-primary pull-right" type="button" onClick={(e) => { e.preventDefault(); this.props.sendFeedBack() } }>Feedback</button>
                                 </div>
-                                <br />
-                                <div >
-                                    <label htmlFor="desc">Description</label><br />
-                                    <input type="text" name="desc" onChange={this.props._InputHandler} id="desc" className="form-control" placeholder="Enter Description here.."
-                                        required />
-                                </div>
-                                <br />
-                                <div >
-                                    <label htmlFor="salary">Salary</label><br />
-                                    <input type="number" onKeyUp={this.props._InputHandler} name="salary" id="salary" className="form-control" placeholder="Enter Salary here.."
-                                        required />
-                                </div>
-                                <br />
-                                <button className="btn btn-primary pull-right" type="submit" >Post</button>
                             </div>
                         </form>
                         <div className="modal-footer"></div>
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
         )
     }
 }

@@ -13,7 +13,7 @@ let NavLoginBar = () => {
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>
                             </button>
-                            <a className="navbar-brand" >Campus Recruitment System</a>
+                            <a className="navbar-brand" >Online Parking System</a>
                         </div>
                         <div id="navbar" className="navbar-collapse collapse">
                             <ul className="nav navbar-nav">

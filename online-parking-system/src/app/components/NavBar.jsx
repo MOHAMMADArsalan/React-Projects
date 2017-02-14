@@ -13,7 +13,7 @@ class Navbar extends React.Component {
 
     }
     logout() {
-        localStorage.removeItem('Campus-Recruitment-System');
+        localStorage.removeItem('online-parking-system');
         this.context.router.push({
             pathname: '/signin'
         })
@@ -37,13 +37,12 @@ class Navbar extends React.Component {
                                     <span className="icon-bar"></span>
                                     <span className="icon-bar"></span>
                                 </button>
-                                <a className="navbar-brand" >Campus Recruitment System</a>
+                                <a className="navbar-brand" >Online Parking System</a>
                             </div>
                             <div id="navbar" className="navbar-collapse collapse">
                                 <ul className="nav navbar-nav">
                                     <li ><Link to="/home">Dashboard</Link></li>
-                                    {this.props.type === 1 && <li > <Link to="/add-company">Add Company</Link></li>}
-                                    {this.props.type === 3 && <li><a onClick={this.goToProfile}> Profile</a></li>}
+                                    {this.props.type === 2 && <li><Link to='/parking-detail'>Parking Detail</Link></li>}
                                     <li className="cursor"><a onClick={this.logout}>Logout</a></li>
                                 </ul>
                             </div>

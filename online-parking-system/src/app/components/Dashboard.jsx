@@ -8,7 +8,6 @@ class Dashboard extends React.Component {
     }
 
     checkUsetType() {
-        console.log("typeeeeeeeeeeeeeeeeeeee",this.props.userType)
         if (this.props.userType === 1) {
             return <AdminData
                 tab={this.props.tab}
@@ -20,11 +19,16 @@ class Dashboard extends React.Component {
                 _deletePost={this.props._deletePost}
                 ></AdminData>
 
-        } 
+        }
         else if (this.props.userType === 2) {
             return <UserData
                 _currentUser={this.props._currentUser}
                 _parkings={this.props._parkings}
+                feedBackHandler={this.props.feedBackHandler}
+                sendFeedBack={this.props.sendFeedBack}
+                isFeedbackSend={this.props.isFeedbackSend}
+                feedback={this.props.feedback}
+               
                 />
         }
     }
