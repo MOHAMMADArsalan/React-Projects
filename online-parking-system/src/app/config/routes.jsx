@@ -10,7 +10,7 @@ import ParkingDetail from "./../containers/details.jsx";
 import { store } from "./../store/index.js";
 import { Provider } from "react-redux";
 function check(nextState, replace) {
-    let user = localStorage.getItem("Campus-Recruitment-System");
+    let user = localStorage.getItem("online-parking-system");
     if (!user) {
         replace({
             pathname: 'signin',

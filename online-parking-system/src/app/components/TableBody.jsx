@@ -30,6 +30,7 @@ class TableBody extends React.Component {
     render() {
         return (
             <tbody>
+            <pre>{JSON.stringify(this.props.data)}</pre>
                 {this.props.data.map((list, index) => {
                     return <tr key={index}>
                         <td>{list['slot']}</td>

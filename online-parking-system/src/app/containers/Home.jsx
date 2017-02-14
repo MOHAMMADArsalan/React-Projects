@@ -83,10 +83,11 @@ class Home extends React.Component {
     }
     componentDidMount() {
         if (this.state.userType) {
+            this.props.getParkingLocation()
+            setTimeout(() => { console.log("parkings", this.props.parkings) },2000)
             if (this.state.userType === 1) {
             } else if (this.state.userType === 2) {
                 this.props.getParkingDetailByUser(this.state.user.uid)
-                this.props.getParkingLocation()
             }
         }
     }

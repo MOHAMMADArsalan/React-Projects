@@ -14,6 +14,7 @@ export const parkingReducer = (state = InitailState, action) => {
     switch (action.type) {
         case 'ADD_PARKING_LOCATION':
             newState = state;
+            console.log("rrrrrrrrrrrrr",action.payload)
             newState.parkings = action.payload;
             newState.isLoading = false;
             return Object.assign({}, state, newState)
