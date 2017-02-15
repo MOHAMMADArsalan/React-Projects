@@ -32,8 +32,6 @@ class Signup extends React.Component {
         this.inputHandler = this.inputHandler.bind(this)
     }
     isProfileRoute = false;
-    // isCompanyRoute = false;
-    // type = 3;
     inputHandler(e) {
         this.setState({
             [e.target.name]: e.target.value
@@ -41,7 +39,6 @@ class Signup extends React.Component {
     }
     submit(e) {
         e.preventDefault();
-        // let obj = Object.assign({}, this.state);
         if (this.isProfileRoute) {
             let multipath = {};
             let newObj = {
@@ -63,28 +60,11 @@ class Signup extends React.Component {
         else {
             let obj = Object.assign({}, this.state);
             obj['type'] = 2;
-            console.log("objjjjjjjjjjjjjjjjjjjjjjjjjjj", obj)
             this.props.signUp(obj);
             this.context.router.push({
                 pathname: "/signin"
             })
         }
-    }
-    componentWillMount() {
-        let user = JSON.parse(localStorage.getItem("online-parking-system"));
-
-        // if (this.props.location.pathname === '/profile') {
-        //     this.isProfileRoute = true;
-        //     user = JSON.parse(user)
-        //     this.type = user.type;
-        //     this.setState(user)
-        // }
-        // else if (this.props.location.pathname === '/add-company') {
-        //     this.isCompanyRoute = true;
-        //     user = JSON.parse(user)
-        //     this.type = user.type;
-        //     this.setState(user)
-        // }
     }
     render() {
         return (

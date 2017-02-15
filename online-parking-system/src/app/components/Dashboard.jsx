@@ -12,6 +12,7 @@ class Dashboard extends React.Component {
             return <AdminData
                 _currentUser={this.props._currentUser}
                 _parkings={this.props._parkings}
+                 deleteUserBookedParking={this.props.deleteUserBookedParking}
                 ></AdminData>
 
         }

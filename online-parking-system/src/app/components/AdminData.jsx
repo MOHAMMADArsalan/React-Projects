@@ -13,6 +13,7 @@ class AdminData extends React.Component {
                 <h1>List</h1>
                 <ParkingList _parkings={this.props._parkings}
                     _currentUser={this.props._currentUser}
+                    deleteUserBookedParking={this.props.deleteUserBookedParking}
                     ></ParkingList>
             </div>
         )

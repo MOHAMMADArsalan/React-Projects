@@ -5,11 +5,11 @@ class TableBody extends React.Component {
         super();
         this.delete = this.delete.bind(this);
     }
-    convertTime (time) {
-        if(time) {
+    convertTime(time) {
+        if (time) {
             let fullTime = (new Date(1487169624000)).toISOString()
-            let date =  fullTime.split("T")[0];
-            let time =  fullTime.split("T")[1];
+            let date = fullTime.split("T")[0];
+            let time = fullTime.split("T")[1];
             time = time.split('.')[0]
             return date + " " + time;
         }
@@ -27,18 +27,20 @@ class TableBody extends React.Component {
         multipath[`parking-location/${location}/${slot}/key`] = "";
         this.props.delete(multipath)
     }
+    print() {
+        window.print()
+    }
     render() {
         return (
             <tbody>
-            <pre>{JSON.stringify(this.props.data)}</pre>
-                {this.props.data.map((list, index) => {
+                {Object.keys(this.props.data).map((parkingKey, index) => {
                     return <tr key={index}>
-                        <td>{list['slot']}</td>
-                        <td>{list['location']}</td>
-                        <td>{this.convertTime(list['start-time'])}</td>
-                        <td>{this.convertTime(list['end-time'])}</td>
-                        <td><button className="btn btn-danger" onClick={() => { this.delete(list['$key'],list['location'],list['slot'],list['date'])} } ><i className="glyphicon glyphicon-trash"></i> Delete</button></td>
-                        <td><button className="btn btn-primary">Print</button></td>
+                        <td>{this.props.data[parkingKey]['slot']}</td>
+                        <td>{this.props.data[parkingKey]['location']}</td>
+                        <td>{this.convertTime(this.props.data[parkingKey]['start-time'])}</td>
+                        <td>{this.convertTime(this.props.data[parkingKey]['end-time'])}</td>
+                        <td><button className="btn btn-danger" onClick={() => { this.delete(parkingKey, this.props.data[parkingKey]['location'], this.props.data[parkingKey]['slot'], this.props.data[parkingKey]['date']) } } ><i className="glyphicon glyphicon-trash"></i> Delete</button></td>
+                        <td><button className="btn btn-primary" onClick={this.print}>Print</button></td>
                     </tr>
                 })}
             </tbody>

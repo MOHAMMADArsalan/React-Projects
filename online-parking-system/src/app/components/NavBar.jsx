@@ -1,10 +1,5 @@
 import * as React from "react";
 import { Link } from "react-router";
-// import { AuthActions } from "./../store/actions/auth.js";
-// import { connect } from "react-redux"
-// function mapDispatchToProp(dispatch) {
-//     Logout: () => { dispatch(AuthActions.logout()) }
-// }
 class Navbar extends React.Component {
     constructor() {
         super();
@@ -42,6 +37,7 @@ class Navbar extends React.Component {
                             <div id="navbar" className="navbar-collapse collapse">
                                 <ul className="nav navbar-nav">
                                     <li ><Link to="/home">Dashboard</Link></li>
+                                    {this.props.type === 1 && <li><Link to='/viewfeedback'>View Feedback</Link></li>}
                                     {this.props.type === 2 && <li><Link to='/parking-detail'>Parking Detail</Link></li>}
                                     <li className="cursor"><a onClick={this.logout}>Logout</a></li>
                                 </ul>

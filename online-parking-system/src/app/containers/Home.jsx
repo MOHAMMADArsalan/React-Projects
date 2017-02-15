@@ -18,33 +18,21 @@ class Home extends React.Component {
     constructor() {
         super();
         this.state = {
-            tab: 'company',
-            post: { salary: '', title: '', desc: '' },
             posted: false,
             posts: [],
             isFeedbackSend: false,
             feedback: ''
         }
 
-        this.showData = this.showData.bind(this);
         this.feedBackHandler = this.feedBackHandler.bind(this);
         this.sendFeedBack = this.sendFeedBack.bind(this);
+        this.deleteUserBookedParking = this.deleteUserBookedParking.bind(this);
     }
-    showData(type) {
-        this.setState({
-            tab: type
-        })
-    }
-    InputHandler(e) {
-        let post = this.state.post;
-        post[e.target.name] = e.target.value;
-        this.setState({
-            post: post
-        })
-    }
+    
+   
     componentWillMount() {
         if (!this.props.location.state) {
-            let user = JSON.parse(localStorage.getItem("online"));
+            let user = JSON.parse(localStorage.getItem("online-parking-system"));
             if (user) {
                 user = JSON.parse(user);
                 this.setState({
@@ -84,19 +72,21 @@ class Home extends React.Component {
     componentDidMount() {
         if (this.state.userType) {
             this.props.getParkingLocation()
-            setTimeout(() => { console.log("parkings", this.props.parkings) },2000)
             if (this.state.userType === 1) {
             } else if (this.state.userType === 2) {
                 this.props.getParkingDetailByUser(this.state.user.uid)
             }
         }
     }
-
+    deleteUserBookedParking(multipath) {
+        FirebaseService.saveMultipath(multipath).then(() => {
+            console.log("DELETE USER BOOKING")
+        }, (err) => { console.error("ERROR TO DELETE USER BOOKING", err) })
+    }
     render() {
         return (
             <div>
                 <Dashboard
-                    _InputHandler={this.InputHandler}
                     userType={this.state.userType}
                     _currentUser={this.state.user}
                     _parkings={this.props.parkings}
@@ -104,6 +94,7 @@ class Home extends React.Component {
                     sendFeedBack={this.sendFeedBack}
                     isFeedbackSend={this.state.isFeedbackSend}
                     feedback={this.state.feedback}
+                    deleteUserBookedParking={this.deleteUserBookedParking}
                     ></Dashboard>
             </div>
         )

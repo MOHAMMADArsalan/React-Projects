@@ -20,7 +20,8 @@ export const rootEpic = combineEpics(
     ParkingEpics.getParkingLocation,
     ParkingEpics.getOneParkingData,
     ParkingEpics.getParkingAvailablity,
-    ParkingEpics.getParkingDetailByUser
+    ParkingEpics.getParkingDetailByUser,
+    ParkingEpics.getFeedbacks
     // CompanyEpics.getCompanyPost,
     // CompanyEpics.getOneCompanyPost,
     // CompanyEpics.getPosts,

@@ -10,7 +10,7 @@ class SignupComponent extends React.Component {
                 <h2 className="form-signin-heading col-sm-4 col-sm-offset-4">{(this.props.isProfileRoute) ? <span>Edit</span> : <span>Register</span>}</h2>
                 <form className="col-sm-4 col-sm-offset-4 auth-form-body" onSubmit={this.props._submit} >
                     <div>
-                        <label htmlFor="Username" className="pull-left">{this.props.isCompanyRoute ? <span> Name</span> : <span>Username</span>}</label>
+                        <label htmlFor="Username" className="pull-left"><span>Username</span></label>
                         <input type="text" name="name"
                             id="Username" className="form-control"
                             placeholder="Username"

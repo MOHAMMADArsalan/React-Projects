@@ -24,7 +24,6 @@ class ParkingDetail extends React.Component {
     }
     delete(multipath) {
         FirebaseService.saveMultipath(multipath).then(() => {
-            console.log("deleteddddddddddddddddd")
         }, (err) => { console.log("ERROR: ", err) })
     }
     componentWillMount() {

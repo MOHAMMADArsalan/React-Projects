@@ -6,7 +6,8 @@ const InitailState = {
     isLoading: false,
     companyPost: [],
     avail: [],
-    'parking-detail': []
+    'parking-detail': [],
+    feedbacks: {}
 }
 
 export const parkingReducer = (state = InitailState, action) => {
@@ -14,7 +15,6 @@ export const parkingReducer = (state = InitailState, action) => {
     switch (action.type) {
         case 'ADD_PARKING_LOCATION':
             newState = state;
-            console.log("rrrrrrrrrrrrr",action.payload)
             newState.parkings = action.payload;
             newState.isLoading = false;
             return Object.assign({}, state, newState)
@@ -22,16 +22,16 @@ export const parkingReducer = (state = InitailState, action) => {
         case 'GET_PARKING_LOCATION':
             return Object.assign({}, state, { isLoading: true });
 
-          case "GET_PARKING_LOCATION_FAIL":
+        case "GET_PARKING_LOCATION_FAIL":
             return Object.assign({}, state, { isLoading: false })
 
         case "GET_PARKING_DETAILS_BY_USER":
             return Object.assign({}, state, { isLoading: true });
 
         case "GET_PARKING_DETAILS_BY_USER_SUCCESS":
+        
             newState = state;
             newState['parking-detail'] = action.payload;
-            console.log("GET_PARKING_DETAILS_BY_USER_SUCCESS",newState)
             newState.isLoading = false;
             return Object.assign({}, state, newState)
 
@@ -58,8 +58,22 @@ export const parkingReducer = (state = InitailState, action) => {
             newState['avail'] = action.payload;
             newState.isLoading = false;
             return Object.assign({}, state, newState)
+
         case "GET_PARKING_LOCATION_AVAILABLITY_FAIL":
 
+            return Object.assign({}, state, { isLoading: false })
+
+        case 'GET_USER_FEEDBACK':
+            return Object.assign({}, state, { isLoading: true });
+
+        case 'GET_USER_FEEDBACK_SUCCESS':
+            console.log("GET_USER_FEEDBACK_SUCCESS", action.payload)
+            newState = state;
+            newState.feedbacks = action.payload;
+            newState.isLoading = false;
+            return Object.assign({}, state, newState)
+
+        case 'GET_USER_FEEDBACK_SUCCESS':
             return Object.assign({}, state, { isLoading: false })
         default:
             return state;

@@ -3,6 +3,17 @@ import { Link } from "react-router"
 class ParkingList extends React.Component {
     constructor() {
         super()
+        this.deleteUserBookedParking = this.deleteUserBookedParking.bind(this);
+    }
+    deleteUserBookedParking(locationId, slotNo, uuid, key) {
+        let multipath = {};
+        multipath[`user-parking/${uuid}/${key}`] = null;
+        multipath[`parking-location/${locationId}/${slotNo}/booked-by`] = "";
+        multipath[`parking-location/${locationId}/${slotNo}/end-time`] = "";
+        multipath[`parking-location/${locationId}/${slotNo}/start-time`] = "";
+        multipath[`parking-location/${locationId}/${slotNo}/status`] = 0;
+        multipath[`parking-location/${locationId}/${slotNo}/key`] = "";
+        this.props.deleteUserBookedParking(multipath)
     }
     render() {
         return (
@@ -23,12 +34,11 @@ class ParkingList extends React.Component {
                                         return <li className="list-group-item list-item" key={slotIndex}>Name: {slot['name']}
                                             <span>
                                                 {(slot['status'] && (slot['booked-by'] == this.props._currentUser.uid || this.props._currentUser.type == 1)) ? <button className="btn btn-primary" disabled={(slot['status'] && slot['booked-by'] != this.props._currentUser.uid)}>Booked <i className="glyphicon glyphicon-ok"></i></button> : null}
-                                                {(slot['status'] && this.props._currentUser.type == 1) ? <button className="btn btn-danger"><i className="glyphicon glyphicon-trash"></i></button> : null}
-
+                                                {(slot['status'] && this.props._currentUser.type == 1) ? <button className="btn btn-danger" onClick={() => { this.deleteUserBookedParking(location, slotIndex, slot['booked-by'], slot['key']) } }><i className="glyphicon glyphicon-trash"></i></button> : null}
                                             </span>
-                                           { (this.props._currentUser.type != 1 && slot['booked-by'] != this.props._currentUser.uid) && <Link className="btn btn-primary" to={{ pathname: '/add-slot', query: { location: location, slot: 'slot' + slotIndex } }}>Apply For Booking</Link>}
-                                            
-                                            </li>
+                                            {(this.props._currentUser.type != 1 && slot['booked-by'] != this.props._currentUser.uid) && <Link className="btn btn-primary" to={{ pathname: '/add-slot', query: { location: location, slot: 'slot' + slotIndex } }}>Apply For Booking</Link>}
+
+                                        </li>
                                     })}
                                 </ul>
                             </div>
@@ -41,4 +51,3 @@ class ParkingList extends React.Component {
     }
 }
 export default ParkingList;
-// , state: { returnTo: this.props.location.pathname }

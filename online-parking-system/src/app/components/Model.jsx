@@ -18,8 +18,7 @@ class Model extends React.Component {
                     <div className="modal-content">
                         <div className="modal-header">
                             <button type="button" className="close" data-dismiss="modal">&times;</button>
-                            <h4 className="modal-title">
-                            </h4>
+                            <h4 className="modal-title"></h4>
                         </div>
                         <form className="col-sm-12" onSubmit={this.props._PostHandler}>
                             <div className="modal-body">

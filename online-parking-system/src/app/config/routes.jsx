@@ -7,6 +7,8 @@ import Dashboard from "./../containers/Dashboard.jsx"
 import Home from "./../containers/Home.jsx";
 import Slot from "./../containers/Slot.jsx";
 import ParkingDetail from "./../containers/details.jsx";
+import ViewFeedback from "./../containers/ViewFeedback.jsx";
+
 import { store } from "./../store/index.js";
 import { Provider } from "react-redux";
 function check(nextState, replace) {
@@ -31,6 +33,7 @@ let routes = (
                     <Route path="profile" component={Signup}></Route>
                     <Route path="add-slot" component={Slot}></Route>
                     <Route path="parking-detail" component={ParkingDetail}></Route>
+                    <Route path="viewfeedback" component={ViewFeedback}></Route>
 
                 </Route>
             </Route>

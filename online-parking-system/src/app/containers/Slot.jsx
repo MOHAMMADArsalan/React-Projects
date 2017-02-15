@@ -32,22 +32,19 @@ class Slot extends React.Component {
     hour = 0;
     selecthour = 1;
     date = new Date().toISOString().substring(0, 10);
-    selectedDate = ''
+    selectedDate = new Date().toISOString().split('T')[0]
     componentWillMount() {
-        console.log("this.props.location", this.props.location)
         if (this.props.location && this.props.location.query) {
             this.location = this.props.location.query.location
             this.slot = this.props.location.query.slot.split("slot")[1]
         }
     }
     componentDidMount() {
-        console.log("componentDidMount", this.location, this.slot)
         let user = JSON.parse(localStorage.getItem("online-parking-system"));
         user = JSON.parse(user)
         this.props.getOneParkingData(this.location, this.slot);
         this.props.getParkingAvailablity(this.location, this.slot, new Date().toISOString().split('T')[0])
         setTimeout(() => {
-            // console.log("this.props.temp", this.props.avail)
             this.setState({
                 temp: this.props.temp,
                 avail: this.props.avail,
@@ -56,10 +53,8 @@ class Slot extends React.Component {
         }, 2000)
     }
     SlotSelectHandler(userSelect, type) {
-        console.log("_addSlot", userSelect)
         if (type === 'hour' && (this.date == new Date().toISOString().split('T')[0])) {
             this.hour = parseInt(userSelect);
-            console.log(".user", this.state.avail, userSelect, this.state.avail[this.state.avail.indexOf(+userSelect)] != -1)
             if (this.state.avail.length && this.state.avail[this.state.avail.indexOf(+userSelect)] != -1) {
                 this.setState({ invalid: true })
             } else {
@@ -103,7 +98,7 @@ class Slot extends React.Component {
         }
     }
     addSlot() {
-        if (this.invalid) {
+        if (this.state.invalid) {
             return false;
         }
         let multipath = {};
@@ -126,7 +121,7 @@ class Slot extends React.Component {
         let loopLength = this.selecthour;
         for (let i = 0; i < loopLength; i++) {
             let loopLength = this.selecthour - this.hour;
-            multipath[`parking-availablity/${this.location}/${this.slot}/${this.selecthour}/${key}/${i}`] = (this.hour) + i;
+            multipath[`parking-availablity/${this.location}/${this.slot}/${this.selectedDate}/${key}/${i}`] = (this.hour) + i;
         }
         multipath[`user-parking/${this.state.user.uid}/${key}/status`] = 1;
         multipath[`user-parking/${this.state.user.uid}/${key}/date`] = this.selectedDate;
@@ -136,10 +131,14 @@ class Slot extends React.Component {
         multipath[`user-parking/${this.state.user.uid}/${key}/start-time`] = StartTime;
         multipath[`user-parking/${this.state.user.uid}/${key}/end-time`] = EndTime;
         FirebaseService.saveMultipath(multipath).then(
-            () => { console.log("multipath update") }, 
+            () => {
+                this.context.router.push({
+                    pathname: "/home"
+                })
+            },
             (err) => {
-            console.log("errrrrrrrrrrrrrrrrrrr", err)
-        })
+                console.log("errrrrrrrrrrrrrrrrrrr", err)
+            })
     }
     render() {
         // {console.log("this.props.avail",this.props.avail)}
@@ -158,5 +157,8 @@ class Slot extends React.Component {
             </div>
         )
     }
+}
+Slot.contextTypes = {
+    router: React.PropTypes.object.isRequired
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Slot);

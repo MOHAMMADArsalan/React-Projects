@@ -1,24 +1,19 @@
-
-// _slots={this.slots}
-//                 _hours={this.hours}
-//                 _selectHours={this.selectHours}
 import * as React from "react";
 
+// const Label = (props) => {
+//     return (
+//         <lable className={this.props.className}>{this.props.children}</lable>
+//     )
+// }
 class AddSlot extends React.Component {
     constructor() {
         super();
     }
     checkAvail(userSelect, type) {
-        if (type == 'date') {
-            // this.date = hour.target.value;
-        }
-        console.log("valueeeeeeeeeeeeeeee", userSelect.target.value, type)
         this.props._SlotSelectHandler(userSelect.target.value, type)
-     
     }
     date = new Date().toISOString().substring(0, 10);
     render() {
-        console.log("_avail", this.props._avail)
         return (
             <div className="row">
                 <div className="col-md-8 col-md-offset-2">
@@ -62,3 +57,5 @@ class AddSlot extends React.Component {
     }
 }
 export default AddSlot;
+ // 
+// 
