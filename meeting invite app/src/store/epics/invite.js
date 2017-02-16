@@ -16,19 +16,6 @@ export class InviteEpics {
                     dispatch(InviteActions.getInviteRejectedAction());
                 });
         }
-        console.log("INNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN")
-        // return (dispatch) =>
-        //     // dispatch(InviteActions.getInviteRequestedAction())
-        //     console.log("getInviteFulfilledAction")
-        // return database.ref("/guests").once('value', (snap) => {
-        //     const invite = snap.val();
-        //     console.log("getInviteFulfilledAction", snap.val())
-        //     dispatch(InviteActions.getInviteFulfilledAction(invite))
-
-        // }).catch((error) => {
-        //     console.error("ERROR: ", err);
-        //     dispatch(InviteActions.getInviteRejectedAction())
-        // })
     }
     static addToInvite(name) {
         return dispatch => {
