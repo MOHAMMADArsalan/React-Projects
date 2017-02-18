@@ -10,7 +10,6 @@ const InitalState = {
 };
 
 export const authReducer = function (state = InitalState, action) {
-  console.log("GET_ALL_USER_SUCCESS",action)
   let newState;
   switch (action.type) {
     case 'LOGIN':

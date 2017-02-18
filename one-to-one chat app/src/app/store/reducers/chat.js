@@ -13,6 +13,13 @@ export const chatReducer = (state = InitailState, action) => {
         case 'GET_USER_CONVERSATION_SUCCESS':
             console.log("GET_USER_CONVERSATION_SUCCESS", action.payload)
             return Object.assign({}, state, newState)
+        case 'ADD_USER_CONVERSATION':
+            newState = state;
+            newState.chats = action.payload;
+            newState.isLoading = false
+            console.log("ADD_USER_CONVERSATION", action.payload)
+            return Object.assign({}, state, newState)
+
         default:
             return state;
     }

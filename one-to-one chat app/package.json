@@ -16,6 +16,7 @@
     "firebase": "^3.6.9",
     "jquery": "^3.1.1",
     "material-ui": "^0.17.0",
+    "moment": "^2.17.1",
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.4.1",
     "react-dom": "^15.3.2",

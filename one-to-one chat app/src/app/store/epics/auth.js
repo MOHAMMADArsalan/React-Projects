@@ -92,12 +92,10 @@ export class AuthEpics {
                 payload
             }) => {
                 if (!payload) {
-                console.log("user1@gmail.com", payload)
                 firebase.database().ref("/users").off("value")
                     firebase.database().ref("/users").on("value",
                         (snapshot) => {
                             if (snapshot.val()) {
-                                console.log("NULLNULLNULL",snapshot.val())
                                 let obj = {};
                                 for (let key in snapshot.val()) {
                                     obj[key] = snapshot.val()[key];
@@ -106,7 +104,6 @@ export class AuthEpics {
                             }
                         })
                 } 
-                    console.log("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww")
                     return Observable.of({
                         type: 'NULL',
                         payload: {}

@@ -9,30 +9,20 @@ import { combineEpics } from 'redux-observable';
 // Application State IAppState
 
 // reducers
-import { authReducer, parkingReducer, chatReducer } from "./reducers/index.js";
+import { authReducer, chatReducer } from "./reducers/index.js";
 
 
-import { AuthEpics, ParkingEpics } from "./epics/index.js";
+import { AuthEpics, ChatEpics } from "./epics/index.js";
 
 export const rootEpic = combineEpics(
     AuthEpics.register,
     AuthEpics.login,
     AuthEpics.getAllUser,
-    ParkingEpics.getParkingLocation,
-    ParkingEpics.getOneParkingData,
-    ParkingEpics.getParkingAvailablity,
-    ParkingEpics.getParkingDetailByUser,
-    ParkingEpics.getFeedbacks
-
-    // CompanyEpics.getCompanyPost,
-    // CompanyEpics.getOneCompanyPost,
-    // CompanyEpics.getPosts,
-    // StudentEpics.getStudents
+    ChatEpics.getUserConversation,
 )
 // Application Reducers
 export const rootReducer = combineReducers({
     authReducer,
-    parkingReducer, 
     chatReducer
 });
 

@@ -12,19 +12,18 @@ export class ChatAction {
 
     static NULL = 'NULL'
     constructor() { }
-    // static addParkingLocation(payload) {
+    static addUserConversation(payload) {
 
-    //     store.dispatch({
-    //         type: ParkingAction.ADD_PARKING_LOCATION,
-    //         payload
-    //     })
-    // }
+        store.dispatch({
+            type: ChatAction.ADD_USER_CONVERSATION,
+            payload
+        })
+    }
 
-    static getUserConversation(userConId, otherConId) {
-        console.log("chatReducer", userConId, otherConId)
+    static getUserConversation(userConId, otherConId,messageId) {
         return {
             type: ChatAction.GET_USER_CONVERSATION,
-            payload: { userConId, otherConId }
+            payload: { userConId, otherConId,messageId }
         }
     }
 }

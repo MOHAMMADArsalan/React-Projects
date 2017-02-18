@@ -7,7 +7,7 @@ class SignupComponent extends React.Component {
     render() {
         return (
             <div className="container text-center" style={{ marginTop: "50px" }}>
-                <h2 className="form-signin-heading col-sm-4 col-sm-offset-4">{(this.props.isProfileRoute) ? <span>Edit</span> : <span>Register</span>}</h2>
+                <h2 className="form-signin-heading col-sm-4 col-sm-offset-4"><span>Register</span></h2>
                 <form className="col-sm-4 col-sm-offset-4 auth-form-body" onSubmit={this.props._submit} >
                     <div>
                         <label htmlFor="Username" className="pull-left"><span>Username</span></label>
@@ -57,21 +57,9 @@ class SignupComponent extends React.Component {
                             />
                     </div>
                     <br />
-                    {!this.props.isProfileRoute &&
-                        <div >
-                            <label htmlFor="inputPassword" className="pull-left">Password</label>
-                            <input type="password" name="password"
-                                id="inputPassword" className="form-control"
-                                placeholder="Password"
-                                required
-                                value={this.props.user.password}
-                                onChange={this.props._inputHandler}
-                                />
-                        </div>
-                    }
-                    <br />
+                  
                     <button className="btn btn-lg btn-primary btn-block" type="submit" >
-                        {this.props.isProfileRoute ? <span>Update</span> : <span>Sign up</span>}
+                       <span>Sign up</span>
                     </button>
                 </form>
             </div>

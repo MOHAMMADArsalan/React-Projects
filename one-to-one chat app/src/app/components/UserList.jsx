@@ -9,7 +9,7 @@ class UsersList extends React.Component {
             <ul className="list-group" style={{ padding: '10px' }}>
                 {Object.keys(this.props.users).map((uid, index) => {
                     if (uid != this.props.currentUser.uid) {
-                        return <li onClick={() => { this.props.getUserConversation(this.props.currentUser.uid,this.props.users[uid]['conversationId']) }} className="list-group-item flex" key={index} style={{ marginBottom: "5px" }}>
+                        return <li onClick={() => { this.props.getUserConversation(this.props.currentUser.uid,this.props.users[uid]['conversationId'],this.props.users[uid]['name'],this.props.users[uid]['profileImage']) }} className="list-group-item flex" key={index} style={{ marginBottom: "5px" }}>
                                     <div>
                                         <img className="profileImage" src={this.props.users[uid]['profileImage']} alt="" />
                                     </div>
