@@ -14,10 +14,13 @@ const express = require('express'),
 require('babel-register')({
     presets: ['react']
 })
+console.log("ssssssssssssssssssssssssssssssssssssssssssssssss")
 const Autocomplete = React.createFactory(require('./src/autocomplete.jsx')),
-    port = 3000
+    port = 7000
 
 mongodb.MongoClient.connect(url, (err, db) => {
+    console.log("ssssssssssssssssssssssssssssssssssssssssssssssss")
+
     if (err) {
         console.error("ERROR: ", err);
         process.exit(1)
@@ -32,6 +35,7 @@ mongodb.MongoClient.connect(url, (err, db) => {
     app.engine('handlebars', exphbs())
     app.set('view engine', 'handlebars')
 
+    console.log("233333333333333333333333333333")
     app.use((req, res, next) => {
         req.rooms = db.collection('rooms')
         return next();
@@ -53,7 +57,8 @@ mongodb.MongoClient.connect(url, (err, db) => {
     })
 
     app.get("/", (req, res, next) => {
-        let url = 'http://localhost:3000/rooms';
+        console.log("wwwwwwwwwwwwwwwwwwwwwwwwwww")
+        let url = 'http://localhost:7000/rooms';
         req.rooms.find({}, { sort: { _id: -1 } }).toArray((err, rooms) => {
             if (err) return next(err)
             res.render('index', {
@@ -71,3 +76,4 @@ mongodb.MongoClient.connect(url, (err, db) => {
         })
     })
 })  
+app.listen(port)
