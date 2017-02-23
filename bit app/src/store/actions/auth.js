@@ -1,6 +1,8 @@
 export class AuthActions {
-    constructor() { }
 
+    constructor() {
+
+    }
     static REGISTER = 'REGISTER';
     static REGISTER_SUCCESS = 'REGISTER_SUCCESS';
     static REGISTER_FAIL = 'REGISTER_FAIL';
@@ -16,6 +18,7 @@ export class AuthActions {
         }
     }
     static login = (email, password) => {
+        console.log("mapDispatchToProps", email, password)
         return {
             type: AuthActions.LOGIN,
             payload: { email, password }

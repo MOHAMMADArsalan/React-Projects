@@ -1,7 +1,7 @@
 import * as React from "react";
 import AppBar from "material-ui/AppBar";
 import FlatButton from "material-ui/FlatButton"
-const AppBarIcon = () => (
+const NavBar = () => (
     <AppBar
         title="Bidding App"
         iconElementRight={
@@ -13,4 +13,4 @@ const AppBarIcon = () => (
     />
 );
 
-export default AppBarIcon;
+export default NavBar;

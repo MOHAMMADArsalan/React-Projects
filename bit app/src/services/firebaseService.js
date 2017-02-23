@@ -1,3 +1,5 @@
+import * as firebase from "firebase"
+
 // Initialize Firebase
 const config = {
     apiKey: "AIzaSyAFsDdNeUrIc1aa27o-2_LGZNT2DQomMcg",
@@ -10,5 +12,9 @@ firebase.initializeApp(config);
 
 export class FirebaseService {
     constructor() { }
-    static mainRef = firebase.database().ref('/');
+    mainRef = firebase.database().ref('/');
+
+    static saveMultipath(multipath) {
+        return this.mainRef.update(multipath)
+    }
 }
