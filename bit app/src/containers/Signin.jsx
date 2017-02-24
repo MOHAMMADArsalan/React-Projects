@@ -1,7 +1,8 @@
 // others lib import 
 import * as React from "react";
 import { connect } from "react-redux"
-import { AuthActions } from "./../store/actions/index.js"
+import { AuthActions } from "./../store/actions/index.js";
+import { browserHistory } from "react-router"
 // material Ui Component
 import TextField from "material-ui/TextField";
 import { Card } from "material-ui/Card";
@@ -42,8 +43,13 @@ class Signin extends React.Component {
         console.log("InputHandler", this.state)
         this.props.login(this.state.email, this.state.password)
     }
-    componentWillReceiveProps() {
-        console.log("isLoggedIn",this.props.isLoggedIn)
+
+    componentWillReceiveProps(newProps) {
+        setTimeout(() => {
+            if (this.props.isLoggedIn) {
+                browserHistory.push('/dashboard')
+            }
+        }, 10)
     }
     render() {
         return (
@@ -53,7 +59,7 @@ class Signin extends React.Component {
                     <Card style={{ padding: 20 }}>
                         <form onSubmit={this.onsubmit}>
                             <TextField id="" name="email" type="email" hintText="Please Enter Email" fullWidth style={{ marginBottom: 20 }} onChange={this.InputHandler} />
-                            <TextField id="" name="password"  type="password" hintText="Please Enter Password" fullWidth style={{ marginBottom: 20 }} onChange={this.InputHandler} />
+                            <TextField id="" name="password" type="password" hintText="Please Enter Password" fullWidth style={{ marginBottom: 20 }} onChange={this.InputHandler} />
                             <RaisedButton label="Sign in" type="submit" primary={true} />
                         </form>
                     </Card>

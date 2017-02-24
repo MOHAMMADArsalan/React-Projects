@@ -68,6 +68,17 @@ export class AuthEpic {
                     })
             })
 
+    static logout = (actions$) =>
+        actions$.ofType(AuthActions.LOGOUT)
+            .switchMap(() => {
+                firebase.auth().signOut();
+                AuthEpic.clearLocalStorage();
+                return Observable.of({
+                    type: AuthActions.LOGIN_SUCCESS
+                })
+            })
+
+
     static setLocalStorage(userObj) {
         localStorage.setItem('bidding-app', JSON.stringify(userObj));
     }

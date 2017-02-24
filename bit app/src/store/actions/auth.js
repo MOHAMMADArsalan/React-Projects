@@ -11,6 +11,10 @@ export class AuthActions {
     static LOGIN_SUCCESS = 'LOGIN_SUCCESS';
     static LOGIN_FAIL = 'LOGIN_FAIL';
 
+    static LOGOUT = 'LOGOUT';
+    static LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+    static LOGOUT_FAIL = 'LOGOUT_FAIL';
+
     static register = (obj) => {
         return {
             type: AuthActions.REGISTER,
@@ -23,6 +27,11 @@ export class AuthActions {
             type: AuthActions.LOGIN,
             payload: { email, password }
         }
+    }
 
+    static logout = () => {
+        return {
+            type: AuthActions.LOGOUT
+        }
     }
 }

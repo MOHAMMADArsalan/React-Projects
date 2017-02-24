@@ -13,7 +13,8 @@ const rootReducer = combineReducers({
 
 const rootEpics = combineEpics(
     AuthEpic.register,
-    AuthEpic.login
+    AuthEpic.login,
+    AuthEpic.logout
 )
 const epicMiddlerware = createEpicMiddleware(rootEpics);
 

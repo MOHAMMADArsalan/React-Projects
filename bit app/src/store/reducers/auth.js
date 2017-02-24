@@ -31,12 +31,27 @@ export const authReducer = (state = initialState, action) => {
             console.log("LOGIN_SUCCESS: ", action.payload)
             newState = state;
             newState['isLoading'] = false;
+            newState['isLoggedIn'] = true;
             newState['user'] = action.payload;
             return Object.assign({}, state, newState)
 
         case AuthActions.LOGIN_FAIL:
             return Object.assign({}, state, { isLoading: false })
         // LOGIN Action handlers End
+
+        //logout 
+        case AuthActions.LOGOUT:
+            return Object.assign({}, state);
+
+        case AuthActions.LOGOUT_SUCCESS:
+            newState = state;
+            newState['isLoggedIn'] = false;
+            newState['user'] = null;
+
+            return Object.assign({}, state, newState);
+
+        case AuthActions.LOGOUT_FAIL:
+            return Object.assign({}, state)
 
         //default state return
         default:
