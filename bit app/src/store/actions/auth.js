@@ -1,7 +1,7 @@
 export class AuthActions {
 
     constructor() {
-
+        console.log("AuthActions")
     }
     static REGISTER = 'REGISTER';
     static REGISTER_SUCCESS = 'REGISTER_SUCCESS';

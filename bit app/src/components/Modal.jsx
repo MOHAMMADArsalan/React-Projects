@@ -2,6 +2,7 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import DatePicker from 'material-ui/DatePicker';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import TextField from "material-ui/TextField";
 import TimePicker from 'material-ui/TimePicker';
@@ -14,7 +15,7 @@ const styles = {
 /**
  * Dialog content can be scrollable.
  */
-export default class DialogExampleScrollable extends React.Component {
+export default class Modal extends React.Component {
     state = {
         open: false,
     };
@@ -28,6 +29,7 @@ export default class DialogExampleScrollable extends React.Component {
     };
 
     render() {
+        const startDate = new Date();
         const actions = [
             <FlatButton
                 label="Cancel"
@@ -36,24 +38,12 @@ export default class DialogExampleScrollable extends React.Component {
             />,
             <FlatButton
                 label="Submit"
+                onClick={this.props.addProductHandler}
                 primary={true}
                 keyboardFocused={true}
                 onTouchTap={this.handleClose}
             />,
         ];
-
-        const radios = [];
-        for (let i = 0; i < 30; i++) {
-            radios.push(
-                <RadioButton
-                    key={i}
-                    value={`value${i + 1}`}
-                    label={`Option ${i + 1}`}
-                    style={styles.radioButton}
-                />
-            );
-        }
-
         return (
             <div style={{ paddingTop: 20 }}>
                 <RaisedButton label="Scrollable Dialog" onTouchTap={this.handleOpen} />
@@ -65,12 +55,14 @@ export default class DialogExampleScrollable extends React.Component {
                     onRequestClose={this.handleClose}
                     autoScrollBodyContent={true}
                 >
-                    <form>
-                        <TextField id="" name="productName" type="text" hintText="Please Enter Product Name" fullWidth style={{ marginBottom: 20, marginTop: 20 }} onChange={this.InputHandler} />
-                        <TextField id="" name="startBidAmount" type="number" hintText="Please Enter Start Bid Amount" fullWidth style={{ marginBottom: 20 }} onChange={this.InputHandler} />
-                        <TextField id="" name="Category" type="text" hintText="Please Enter Product Name" fullWidth style={{ marginBottom: 20 }} onChange={this.InputHandler} />
-                        <TimePicker pedantic="true" name="startTime"  fullWidth style={{ marginBottom: 20 }} onChange={this.InputHandler}   hintText="24hr Format" />
-                        <TimePicker pedantic="true" name="endTime" fullWidth style={{ marginBottom: 20 }} onChange={this.InputHandler}  hintText="24hr Format" />
+                    <form >
+                        <TextField id="productName" name="productName" type="text" hintText="Please Enter Product Name" fullWidth style={{ marginBottom: 20, marginTop: 20 }} onChange={this.props.InputHandler} />
+                        <TextField id="startBidAmount" name="startBidAmount" type="number" hintText="Please Enter Start Bid Amount" fullWidth style={{ marginBottom: 20 }} onChange={this.props.InputHandler} />
+                        <TextField id="Category" name="category" type="text" hintText="Please Enter Category" fullWidth style={{ marginBottom: 20 }} onChange={this.props.InputHandler} />
+                        <DatePicker id="DatePicker" hintText="Please select Date"  name="date" minDate={new Date()} fullWidth style={{ marginBottom: 20 }} onChange={this.props.dateHandler}
+                        />
+                        <TimePicker id="startTime" pedantic={true} name="startTime" fullWidth style={{ marginBottom: 20 }} onChange={this.props.startTimeHandler} hintText="Please select Start Time" />
+                        <TimePicker id="endTime" pedantic={true} name="endTime" fullWidth style={{ marginBottom: 20 }} onChange={this.props.endTimeHandler} hintText="Please select End Time" />
                     </form>
                 </Dialog>
             </div>

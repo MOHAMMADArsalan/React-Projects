@@ -12,9 +12,11 @@ firebase.initializeApp(config);
 
 export class FirebaseService {
     constructor() { }
-    mainRef = firebase.database().ref('/');
-
+    mainRef = firebase.database().ref();
+    static getPushKey(path) {
+        return firebase.database().ref('/').child(path).push();
+    }
     static saveMultipath(multipath) {
-        return this.mainRef.update(multipath)
+        return firebase.database().ref().update(multipath)
     }
 }
