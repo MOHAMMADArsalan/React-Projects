@@ -1,5 +1,6 @@
 import { authReducer } from "./auth.js";
-
-export  {
-    authReducer
+import { productReducer } from "./product.js"
+export {
+    authReducer,
+    productReducer
 }

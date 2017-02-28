@@ -5,7 +5,7 @@ import { Observable } from "rxjs"
 export class AuthEpic {
     constructor() { }
     static register = (actions$) =>
-        actions$.ofType(AuthActions.REGISTER)
+        actions$.ofType('REGISTER')
             .switchMap(({payload}) => {
                 return firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password).then((res) => {
                     console.log("resssssssssssssssssssssssssssss", res)
@@ -14,11 +14,11 @@ export class AuthEpic {
                         delete payload['password'];
                         return user.set(payload).then(() => {
                             return {
-                                type: AuthActions.REGISTER_SUCCESS
+                                type: 'REGISTER_SUCCESS'
                             }
                         }, (err) => {
                             return {
-                                type: AuthActions.REGISTER_FAIL,
+                                type: 'REGISTER_FAIL',
                                 payload: err
                             }
                         })
@@ -26,20 +26,20 @@ export class AuthEpic {
                 }, (err) => {
                     console.log("ERROR RRR ", err.code)
                     return {
-                        type: AuthActions.REGISTER_FAIL,
+                        type: 'REGISTER_FAIL',
                         payload: err
                     }
                 })
             })
 
     static login = (actions$) =>
-        actions$.ofType(AuthActions.LOGIN)
+        actions$.ofType('LOGIN')
             .switchMap(({payload}) => {
                 return Observable.fromPromise(firebase.auth().signInWithEmailAndPassword(payload.email, payload.password))
                     .catch(err => {
                         console.log('err ', err)
                         return {
-                            type: AuthActions.LOGIN_FAILER,
+                            type: 'LOGIN_FAILER',
                             payload: err
                         };
                     })
@@ -47,7 +47,7 @@ export class AuthEpic {
                         if (d.message) {
                             // error
                             return {
-                                type: AuthActions.LOGIN_FAILER,
+                                type: 'LOGIN_FAILER',
                                 payload: d.message
                             };
                         } else {
@@ -60,7 +60,7 @@ export class AuthEpic {
                                         obj = Object.assign({}, obj, u.val())
                                     AuthEpic.setLocalStorage(JSON.stringify(obj))
                                     return {
-                                        type: AuthActions.LOGIN_SUCCESS,
+                                        type:'LOGIN_SUCCESS',
                                         payload: obj
                                     }
                                 })
@@ -69,12 +69,12 @@ export class AuthEpic {
             })
 
     static logout = (actions$) =>
-        actions$.ofType(AuthActions.LOGOUT)
+        actions$.ofType('LOGOUT')
             .switchMap(() => {
                 firebase.auth().signOut();
                 AuthEpic.clearLocalStorage();
                 return Observable.of({
-                    type: AuthActions.LOGIN_SUCCESS
+                    type: 'LOGIN_SUCCESS'
                 })
             })
 

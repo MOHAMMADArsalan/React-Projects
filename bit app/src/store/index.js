@@ -1,20 +1,22 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { combineEpics, createEpicMiddleware } from "redux-observable";
 
-import { AuthEpic } from "./epics/index.js"
-import { AuthActions } from "./actions/index.js";
+import { AuthEpic,ProductEpic  } from "./epics/index.js"
 
-import { authReducer } from "./reducers/index.js";
+import { authReducer, productReducer } from "./reducers/index.js";
 
 
 const rootReducer = combineReducers({
-    authReducer
+    authReducer,
+    productReducer
 });
 
 const rootEpics = combineEpics(
     AuthEpic.register,
     AuthEpic.login,
-    AuthEpic.logout
+    AuthEpic.logout,
+    ProductEpic.getCategory,
+    ProductEpic.getProduct
 )
 const epicMiddlerware = createEpicMiddleware(rootEpics);
 
