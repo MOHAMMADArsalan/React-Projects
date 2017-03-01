@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "jest",
-        "start": "npm run build && ./node_modules/.bin/node-dev index.js",
+        "start": "./node_modules/.bin/node-dev index.js",
         "build": "./node_modules/.bin/webpack",
         "seed": "mongoimport rooms.json --jsonArray --collection=rooms --db=autocomplete"
     },
@@ -14,8 +14,7 @@
         "express.js",
         "mongodb"
     ],
-    "github": "https://www.github.com/MOHAMMADArsalan",
-    "author": "MOHAMMADArsalan",
+    "author": "MOHAMMAD Arsalan",
     "license": "MIT",
     "babel": {
         "presets": [
@@ -30,7 +29,7 @@
         "express": "4.13.1",
         "express-handlebars": "2.0.1",
         "express-validator": "2.13.0",
-        "mongodb": "2.2.19",
+        "mongodb": "2.0.36",
         "morgan": "1.6.1"
     },
     "devDependencies": {
