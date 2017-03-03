@@ -133,15 +133,29 @@ class Home extends React.Component {
             this.props.getReports();
         }
     }
-    saveStatus = ()=> {
-        console.log("this.stattttttttttt",this.state)
+    changeStatus = (status, key, uuid) => {
+        let multipath = {};
+        multipath[`user-reports/${uuid}/${key}/status`] = status;
+        multipath[`reports/${key}/status`] = status;
+        FirebaseService.saveMultipath(multipath).then(() => {
+            console.log("Status changed")
+        }, (err) => { console.log("ERROR: ", err) })
+    }
+    doneReport = (completed, key, uuid) => {
+        let multipath = {};
+        multipath[`user-reports/${uuid}/${key}/completed`] = !completed;
+        multipath[`reports/${key}/completed`] = !completed;
+        FirebaseService.saveMultipath(multipath).then(() => {
+            console.log("Status changed")
+        }, (err) => { console.log("ERROR: ", err) })
+
     }
     render() {
         return (
             <div>
                 <NavBar logout={this.props.logout} />
                 <DashboardComponent
-                changeStatus={this.changeStatus}
+                    changeStatus={this.changeStatus}
                     inputHandler={this.inputHandler}
                     currentUser={Object.keys(this.props.user).length > 0 ? this.props.user : this.state.user}
                     selectedReport={this.selectReportHandler}
@@ -149,8 +163,8 @@ class Home extends React.Component {
                     state={this.state}
                     addReport={this.addReport}
                     reports={Object.keys(this.props.userReports).length ? this.props.userReports : this.props.reports}
-                    saveStatus={this.saveStatus}
-
+                    changeStatus={this.changeStatus}
+                    doneReport={this.doneReport}
                 />
 
             </div>

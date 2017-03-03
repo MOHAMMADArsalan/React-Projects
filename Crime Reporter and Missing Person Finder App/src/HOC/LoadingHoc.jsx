@@ -13,7 +13,9 @@ const LoadingHOC = (propName) => (WrapperComponent) => {
         render() {
             return this.isEmpty(this.props[propName]) ?
 
-                <CircularProgress style={{ marginTop: 25, marginLeft: 50 }} />
+                <div style={{textAlign:'center'}}>
+                    <CircularProgress style={{ marginTop: 25, marginLeft: 50 }} />
+                </div>
 
                 : <WrapperComponent {...this.props} />
         }

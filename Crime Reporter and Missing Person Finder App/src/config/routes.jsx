@@ -1,7 +1,7 @@
 import { Route, Router, browserHistory, IndexRoute } from "react-router";
 import * as React from "react";
 // Components
-import { Signin, Signup, Main, Home, Dashboard } from "./../containers/index.js"
+import { Signin, Signup, Main, Home, Dashboard,IndexPage } from "./../containers/index.js"
 
 // material UI Component And Config
 import injectTabEventPlugin from "react-tap-event-plugin";
@@ -30,9 +30,11 @@ export const routes = (
         <Provider store={store}>
             <Router history={browserHistory}>
                 <Route path="/" component={Main}>
-                    <IndexRoute component={Signin} />
+                    <IndexRoute component={IndexPage} />
                     <Route path="signin" component={Signin} />
                     <Route path="/signup" component={Signup} />
+                    <Route path="/home" component={IndexPage} />
+                    
                 </Route>
                 <Route path="/" component={Dashboard}>
                     <IndexRoute component={Home} />

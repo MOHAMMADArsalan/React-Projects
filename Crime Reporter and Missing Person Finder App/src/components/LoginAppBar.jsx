@@ -7,10 +7,12 @@ const LoginAppBar = () => (
         title="Crime App"
         iconElementRight={
             <div>
+                <Link to="/home">
+                    <FlatButton label="Home" labelStyle={{ color: 'white' }} />
+                </Link>
                 <Link to="/signin">
                     <FlatButton label="Signin" labelStyle={{ color: 'white' }} />
                 </Link>
-
                 <Link to="/signup">
                     <FlatButton label="Signup" labelStyle={{ color: 'white' }} />
                 </Link>
