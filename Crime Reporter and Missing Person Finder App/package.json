@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:prod": "webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors --optimize-minimize",
-    "start": "webpack-dev-server --progress --inline --history-api-fallback --open"
+    "build:prod": "webpack -d && webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors --optimize-minimize",
+    "start": "webpack -d && webpack-dev-server --progress --inline --history-api-fallback --open"
   },
   "author": "MOHAMMADArsalan",
   "license": "MIT",
